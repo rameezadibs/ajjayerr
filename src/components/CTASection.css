@@ -1,0 +1,246 @@
+/* ==========================================================================
+   AJJAYER ARCHITECTURAL CTA SECTION
+   ========================================================================== */
+
+.cta-section {
+  position: relative;
+  background-color: #0c0f10;
+  color: #f2efe9;
+  padding: 2.75rem 2rem 5.5rem;
+  overflow: hidden;
+  border-top: 1px solid rgba(164, 119, 86, 0.25);
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Background photo */
+.cta-bg-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dark overlay on top of photo */
+.cta-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(5, 8, 10, 0.88) 0%,
+    rgba(5, 8, 10, 0.72) 50%,
+    rgba(5, 8, 10, 0.55) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+@media (min-width: 1024px) {
+  .cta-section {
+    padding: 3.25rem 4.5rem 6.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cta-section {
+    padding: 3.75rem 6vw 7.5rem;
+  }
+}
+
+/* Background Technical Blueprint Graphics */
+.cta-blueprint-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.12;
+  color: #ca9468;
+}
+
+.cta-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(164, 119, 86, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(164, 119, 86, 0.07) 1px, transparent 1px);
+  background-size: 70px 70px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Radial warm copper ambient backlight */
+.cta-ambient-glow {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  width: 65vw;
+  height: 450px;
+  background: radial-gradient(circle, rgba(202, 148, 104, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cta-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1420px;
+  margin: 0 auto;
+}
+
+/* Top Section Kicker */
+.cta-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3.25rem;
+  border-bottom: 1px solid rgba(164, 119, 86, 0.2);
+  padding-bottom: 1.5rem;
+}
+
+.cta-kicker-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.cta-kicker-num {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: #ca9468;
+  font-weight: 600;
+}
+
+.cta-kicker-title {
+  font-size: 0.76rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #ca9468;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cta-kicker-rule {
+  width: 48px;
+  height: 1px;
+  background-color: #ca9468;
+  opacity: 0.8;
+}
+
+.cta-location-tag {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: #aaa6a0;
+  text-transform: uppercase;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .cta-location-tag {
+    display: block;
+  }
+}
+
+/* Focused Architectural Content Wrap */
+.cta-content-wrap {
+  position: relative;
+  max-width: 780px;
+}
+
+.cta-headline {
+  font-family: 'Cormorant Garamond', 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2.6rem, 5.2vw, 4.8rem);
+  line-height: 1.04;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #f2efe9;
+  margin: 0 0 1.8rem;
+}
+
+.cta-headline span {
+  display: block;
+}
+
+.cta-headline em {
+  font-style: italic;
+  color: #ca9468;
+  font-weight: 400;
+}
+
+.cta-description {
+  font-size: clamp(0.98rem, 1.2vw, 1.15rem);
+  line-height: 1.75;
+  color: #aaa6a0;
+  max-width: 680px;
+  margin: 0 0 2.5rem;
+  letter-spacing: 0.015em;
+}
+
+/* Call to Action Buttons */
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  min-height: 52px;
+  padding: 0 2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.cta-btn-primary {
+  background-color: #ca9468;
+  color: #10100f;
+  border: 1px solid #ca9468;
+}
+
+.cta-btn-primary:hover {
+  background-color: #dca77b;
+  border-color: #dca77b;
+}
+
+.cta-btn-secondary {
+  background-color: rgba(18, 22, 24, 0.6);
+  color: #f2efe9;
+  border: 1px solid rgba(202, 148, 104, 0.45);
+}
+
+.cta-btn-secondary:hover {
+  border-color: #ca9468;
+  color: #ffffff;
+  background-color: rgba(202, 148, 104, 0.12);
+}
+
+@media (max-width: 600px) {
+  .cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+  .cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

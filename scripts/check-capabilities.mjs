@@ -1,0 +1,58 @@
+import { chromium } from '@playwright/test';
+import { mkdir } from 'node:fs/promises';
+await mkdir('test-results', { recursive: true });
+const browser = await chromium.launch({executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE || undefined});
+const page = await browser.newPage();
+const errors = [];
+page.on('pageerror', error => errors.push(error.message));
+for(const [name,width,height] of [['desktop',1600,1000],['tablet',820,1180],['mobile',390,844],['small-mobile',320,700]]) {
+  await page.setViewportSize({width,height});
+  await page.goto(`http://127.0.0.1:5173/?viewport=${name}#capabilities`);
+  const section = page.locator('#capabilities');
+  await section.evaluate(el => el.scrollIntoView({block:'start',behavior:'instant'}));
+  await page.waitForTimeout(1300);
+  if(await section.locator('.cap-intro-heading span').first().evaluate(el => getComputedStyle(el).opacity) !== '1') throw new Error(`${name}: introductory heading hidden`);
+  const selected = section.getByRole('tab',{selected:true});
+  if(!(await selected.innerText()).includes('GENERAL CONSTRUCTION')) throw new Error(`${name}: incorrect default selection`);
+  await section.locator('.cap-section-footer').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(900);
+  await section.getByRole('heading',{level:3}).scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
+  if(await page.evaluate(()=>document.documentElement.scrollWidth > innerWidth)) throw new Error(`${name}: horizontal overflow`);
+  await section.screenshot({path:`test-results/capabilities-${name}.png`});
+  const tabs = await section.getByRole('tab').all();
+  const titles = ['General Construction','Steel Structures & Fabrication','Tensile Shade Structures','Car Parking Shades & Pergolas','Warehouses & Pre-Engineered Buildings','Fit-Out & Finishing'];
+  const images = new Set();
+  const details = new Set();
+  const benefits = new Set();
+  for(let i=0;i<tabs.length;i++) {
+    await tabs[i].click();
+    await page.waitForTimeout(650);
+    const title = (await section.getByRole('heading',{level:3}).innerText()).replace(/\s+/g,' ').trim();
+    if(title !== titles[i]) throw new Error(`${name}: wrong title ${title}`);
+    if(await tabs[i].getAttribute('aria-selected') !== 'true') throw new Error('Tab selection mismatch');
+    images.add(await section.locator('.cap-photo-layer').last().innerHTML());
+    details.add(await section.locator('.cap-drawing-note').innerText());
+    benefits.add(await section.locator('.cap-benefits').innerText());
+    const href=await section.getByRole('link',{name:'Explore service',exact:true}).getAttribute('href');
+    if(!href.startsWith('/services#')) throw new Error('Missing destination');
+  }
+  if(images.size!==6 || details.size!==6 || benefits.size!==6) throw new Error('Capability content not fully updated');
+  await tabs[5].focus();
+  await page.keyboard.press('Home');
+  await page.waitForTimeout(550);
+  if(await tabs[0].getAttribute('aria-selected') !== 'true') throw new Error('Home keyboard selection failed');
+  await page.keyboard.press('ArrowUp');
+  await page.waitForTimeout(550);
+  if(await tabs[5].getAttribute('aria-selected') !== 'true') throw new Error('Arrow wrap failed');
+  console.log(`${name}: six states, imagery, details, benefits, destinations, keyboard and overflow passed`);
+}
+await page.emulateMedia({reducedMotion:'reduce'});
+await page.reload();
+await page.locator('#capabilities').scrollIntoViewIfNeeded();
+await page.getByRole('tab',{name:/Steel Structures/}).click();
+await page.waitForTimeout(100);
+if(!(await page.locator('.cap-feature-title').innerText()).includes('Steel Structures')) throw new Error('Reduced motion switch failed');
+if(errors.length) throw new Error(errors.join('\n'));
+console.log('Reduced-motion interaction passed; no browser runtime errors.');
+await browser.close();

@@ -109,8 +109,8 @@ export default function Footer() {
               <div className="footer-contact-item">
                 <Phone size={17} />
                 <div>
-                  <a href="tel:+97142345678" style={{ fontWeight: 500, color: '#ffffff' }}>
-                    +971 4 234 5678
+                  <a href="tel:+971541696975" style={{ fontWeight: 500, color: '#ffffff' }}>
+                    +971 54 169 6975
                   </a>
                   <span style={{ display: 'block', fontSize: '0.74rem', color: '#7d8285' }}>
                     Direct Engineering Hotline

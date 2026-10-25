@@ -5,7 +5,7 @@ import './CTASection.css';
 
 export default function CTASection({
   primaryCta = { label: 'Discuss a project', href: 'mailto:projects@ajjayer.ae' },
-  secondaryCta = { label: '+971 4 234 5678', href: 'tel:+97142345678' },
+  secondaryCta = { label: '+971 54 169 6975', href: 'tel:+971541696975' },
 }) {
   const reduced = useReducedMotion();
 

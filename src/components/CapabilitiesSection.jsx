@@ -111,6 +111,6 @@ export default function CapabilitiesSection({ servicesHref = '/services', capabi
         </div>
       </div>
     </div>
-    <div className="cap-section-footer flex items-center justify-between"><p><span>06</span> Services</p><span className="inline-flex items-center cursor-default"><span className="cap-footer-rule" aria-hidden="true"/>Explore all services <ArrowRight size={16} strokeWidth={1.2}/></span></div>
+    <div className="cap-section-footer flex items-center justify-between"><p><span>06</span> Services</p><span className="inline-flex items-center cursor-default">Explore all services <ArrowRight size={16} strokeWidth={1.2}/></span></div>
   </section></MotionConfig>;
 }

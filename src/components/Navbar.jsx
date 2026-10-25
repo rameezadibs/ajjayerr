@@ -260,7 +260,7 @@ export default function Navbar() {
 
               <div className="contact-info-list">
                 <a
-                  href="tel:+97140000000"
+                  href="tel:+971541696975"
                   className="contact-info-item"
                   title="Call AJJAYER Headquarters"
                 >
@@ -269,7 +269,7 @@ export default function Navbar() {
                   </div>
                   <div>
                     <div className="contact-info-label">Direct Line (UAE)</div>
-                    <div className="contact-info-value">+971 4 234 5678</div>
+                    <div className="contact-info-value">+971 54 169 6975</div>
                   </div>
                 </a>
 

@@ -68,6 +68,35 @@ export default function CapabilitiesSection({ servicesHref = '/services', capabi
         </motion.button>)}</div>
       </div>
       <div id={`${id}-panel`} className="cap-feature relative min-w-0" role="tabpanel" aria-labelledby={`${id}-tab-${activeId}`} tabIndex={0}>
+        {mobile && (
+          <div className="cap-mobile-nav flex items-center justify-between" aria-label="Service navigation">
+            <button
+              type="button"
+              className="cap-mobile-nav-btn"
+              onClick={() => {
+                const idx = capabilities.findIndex(item => item.id === activeId);
+                const prevIdx = (idx - 1 + capabilities.length) % capabilities.length;
+                setActiveId(capabilities[prevIdx].id);
+              }}
+              aria-label="Previous service"
+            >
+              <span>‹</span> Previous
+            </button>
+            <span className="cap-mobile-nav-counter"><b>{active.id}</b> / 06</span>
+            <button
+              type="button"
+              className="cap-mobile-nav-btn"
+              onClick={() => {
+                const idx = capabilities.findIndex(item => item.id === activeId);
+                const nextIdx = (idx + 1) % capabilities.length;
+                setActiveId(capabilities[nextIdx].id);
+              }}
+              aria-label="Next service"
+            >
+              Next <span>›</span>
+            </button>
+          </div>
+        )}
         <div className="cap-photo-stage absolute inset-0 overflow-hidden"><AnimatePresence initial={false}>{<motion.div key={activeId} className="cap-photo-layer absolute inset-0" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:reduced ? 0 : .5}}><CapabilityImage image={active.image} className="cap-feature-photo"/></motion.div>}</AnimatePresence></div>
         <div className="cap-photo-gradient absolute inset-0" aria-hidden="true"/>
         <AnimatePresence mode="wait" initial={false}><motion.div key={activeId} className="cap-drawing-block" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:reduced ? 0 : .2}}><TechnicalDrawing type={active.drawing}/><div className="cap-drawing-note"><p>{active.detail[0]}</p>{active.detail.slice(1).map(line => <span key={line}>{line}</span>)}</div></motion.div></AnimatePresence>
@@ -76,12 +105,12 @@ export default function CapabilitiesSection({ servicesHref = '/services', capabi
             <p className="cap-eyebrow flex items-center"><span>{active.id}</span><i/><span>Service</span></p>
             <h3 className="cap-feature-title"><span>{active.title[0]}</span><span className="cap-accent">{active.title[1]}</span></h3>
             <p className="cap-feature-description">{active.description}</p>
-            <motion.a className="cap-explore inline-flex items-center justify-between" href={capabilityLinks[active.slug] || `${servicesHref}#${active.slug}`} whileHover={{ y: -2, backgroundColor: '#dca77b' }} whileTap={{ y: 0 }}><span>Explore service</span> <ArrowRight size={18} strokeWidth={1.2}/></motion.a>
+            <motion.button type="button" className="cap-explore inline-flex items-center justify-between cursor-default" whileHover={{ y: -2, backgroundColor: '#dca77b' }} whileTap={{ y: 0 }}><span>Explore service</span> <ArrowRight size={18} strokeWidth={1.2}/></motion.button>
             <div className="cap-benefits grid grid-cols-4">{active.benefits.map(([Icon,line1,line2],i) => <motion.div key={line1+line2} {...reveal(i*.05)}><Icon size={27} strokeWidth={1}/><p>{line1}<br/>{line2}</p></motion.div>)}</div>
           </motion.div></AnimatePresence>
         </div>
       </div>
     </div>
-    <div className="cap-section-footer flex items-center justify-between"><p><span>06</span> Services</p><a href={servicesHref} className="inline-flex items-center"><span className="cap-footer-rule" aria-hidden="true"/>Explore all services <ArrowRight size={16} strokeWidth={1.2}/></a></div>
+    <div className="cap-section-footer flex items-center justify-between"><p><span>06</span> Services</p><span className="inline-flex items-center cursor-default"><span className="cap-footer-rule" aria-hidden="true"/>Explore all services <ArrowRight size={16} strokeWidth={1.2}/></span></div>
   </section></MotionConfig>;
 }

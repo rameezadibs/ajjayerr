@@ -64,42 +64,30 @@ export default function HeroSection({ links = defaultLinks }) {
 
         {/* Both CTAs now share identical primary copper button styling */}
         <motion.div className="hero-actions flex" {...reveal(0.68)} role="group" aria-label="Primary Call to Actions">
-          <motion.a
-            className="button primary-button"
-            href={links.Projects}
+          <motion.button
+            type="button"
+            className="button primary-button cursor-default"
             aria-label="Explore our construction, engineering and fabrication work in the UAE"
             whileHover={{ y: -2, backgroundColor: '#dca77b' }}
             whileTap={{ y: 0 }}
           >
             <span>Explore our work</span>
             <ArrowRight size={17} aria-hidden="true" />
-          </motion.a>
+          </motion.button>
           
-          <motion.a
-            className="button primary-button"
-            href={links.Contact}
+          <motion.button
+            type="button"
+            className="button primary-button cursor-default"
             aria-label="Discuss a construction or engineering project with AJJAYER"
             whileHover={{ y: -2, backgroundColor: '#dca77b' }}
             whileTap={{ y: 0 }}
           >
             <span>Discuss a project</span>
             <ArrowRight size={17} aria-hidden="true" />
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
 
-      <motion.aside
-        className="architectural-index"
-        aria-label="Regional Headquarters & Contact"
-        {...reveal(0.8)}
-      >
-        <div className="index-number" aria-hidden="true">01</div>
-        <p className="font-medium text-white">Dubai, United Arab Emirates</p>
-        <p className="text-zinc-400">·</p>
-        <a href="tel:+971541696975" className="hover:text-copper transition-colors">
-          +971 54 169 6975
-        </a>
-      </motion.aside>
 
       <a
         className="scroll-cue"

@@ -98,27 +98,27 @@ export default function CTASection({
             aria-label="Consultation Call to Actions"
             {...reveal(0.34)}
           >
-            <motion.a
-              href={primaryCta.href}
-              className="cta-btn cta-btn-primary"
-              aria-label="Email AJJAYER to discuss a project"
+            <motion.button
+              type="button"
+              className="cta-btn cta-btn-primary cursor-default"
+              aria-label="Discuss a project with AJJAYER"
               whileHover={{ y: -2, backgroundColor: '#dca77b' }}
               whileTap={{ y: 0 }}
             >
               <span>{primaryCta.label}</span>
               <ArrowRight size={17} aria-hidden="true" />
-            </motion.a>
+            </motion.button>
 
-            <motion.a
-              href={secondaryCta.href}
-              className="cta-btn cta-btn-primary"
+            <motion.button
+              type="button"
+              className="cta-btn cta-btn-primary cursor-default"
               aria-label="Call AJJAYER Dubai Headquarters directly"
               whileHover={{ y: -2, backgroundColor: '#dca77b' }}
               whileTap={{ y: 0 }}
             >
               <span>{secondaryCta.label}</span>
               <ArrowRight size={17} aria-hidden="true" />
-            </motion.a>
+            </motion.button>
           </motion.div>
         </div>
       </div>

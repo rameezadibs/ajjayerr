@@ -201,9 +201,6 @@ export default function Navbar() {
               <div className="mobile-contact-card">
                 <p>AJJAYER Constructions Contracting LLC</p>
                 <span>Dubai, United Arab Emirates</span>
-                <span style={{ color: '#ca9468', marginTop: '6px' }}>
-                  25.2048° N, 55.2708° E
-                </span>
               </div>
 
               <button

@@ -33,7 +33,7 @@ export default function WhyAjjayerSection({ statistics = whyStatistics, advantag
       <h2 id={`${id}-title`} className="why-headline">{['Precision', 'Builds', 'A stronger', 'Tomorrow.'].map((line, index) => <motion.span key={line} className={index > 1 ? 'why-bronze' : undefined} {...reveal(.08 + index * .09)}>{line}</motion.span>)}</h2>
       <div className="why-annotations" aria-hidden="true"><p>People<br/>Engineering<br/>Materials<br/>Ideas<br/>Into reality</p><i/><p>Dubai<br/>UAE<br/>Beyond<span>—</span></p></div>
       <motion.div className="why-introduction" {...reveal(.25)}><i className="why-short-rule" aria-hidden="true"/><p>At AJJAYER, we go beyond construction. We combine people, precision, engineering expertise and disciplined execution to deliver lasting value for the UAE and for generations to come.</p>
-        <motion.a className="why-cta inline-flex items-center justify-between" href={`#${id}-advantages`} whileHover={{ y: -2, backgroundColor: '#dca77b' }} whileTap={{ y: 0 }}><span>Our difference</span><ArrowRight aria-hidden="true" size={21} strokeWidth={1.2}/></motion.a>
+        <motion.button type="button" className="why-cta inline-flex items-center justify-between cursor-default" whileHover={{ y: -2, backgroundColor: '#dca77b' }} whileTap={{ y: 0 }}><span>Our difference</span><ArrowRight aria-hidden="true" size={21} strokeWidth={1.2}/></motion.button>
       </motion.div>
       <dl className="why-stats grid">{statistics.map((stat, index) => <motion.div key={stat.lines.join(' ')} {...reveal(index * .08)}><dt>{stat.lines.map(line => <span key={line}>{line}</span>)}</dt><dd>{stat.value}<span>{stat.suffix}</span></dd><i aria-hidden="true"/></motion.div>)}</dl>
       <p className="why-footer"><span>— People</span><b>/</b>Precision<b>/</b>Partnership<b>/</b>Progress</p>
@@ -44,7 +44,7 @@ export default function WhyAjjayerSection({ statistics = whyStatistics, advantag
         <motion.div className="why-icon" {...reveal(.12 + index * .08)}><Icon aria-hidden="true" strokeWidth={1} /></motion.div>
         <div className="why-advantage-copy"><h3>{title}</h3><p>{description}</p></div>
       </motion.li>)}</ol>
-      <motion.div className="why-commitment" {...reveal(.25)}><p className="why-commitment-label">Our commitment</p><p className="why-promise">More value.<br/>Stronger communities.<br/><span>A better UAE.</span></p><a href={commitmentHref} className="why-circle inline-flex items-center justify-center" aria-label="Discuss your project with AJJAYER"><ArrowRight size={22} strokeWidth={1.2} aria-hidden="true"/></a></motion.div>
+      <motion.div className="why-commitment" {...reveal(.25)}><p className="why-commitment-label">Our commitment</p><p className="why-promise">More value.<br/>Stronger communities.<br/><span>A better UAE.</span></p><span className="why-circle inline-flex items-center justify-center cursor-default" aria-hidden="true"><ArrowRight size={22} strokeWidth={1.2} aria-hidden="true"/></span></motion.div>
     </div>
   </section>;
 }

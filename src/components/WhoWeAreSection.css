@@ -40,10 +40,10 @@
 .who-editorial-footer{margin-top:30px}
 }
 @media(max-width:767px){
-.who-section-label{top:8%;left:7%;font-size:clamp(6px,1.7vw,10px);gap:8px}
+.who-section-label{top:12px;left:14px;font-size:10px;gap:8px;z-index:10;background:rgba(242,239,233,.92);padding:4px 10px;border-radius:2px;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .who-section-label i{width:12px}
-.who-people{display:block;top:22%;left:7%;font-size:clamp(5px,1.5vw,9px);padding-left:8px;margin-left:-8px!important;letter-spacing:.06em}
-.who-coordinates{display:block;bottom:4.8%;font-size:clamp(5px,1.4vw,8px);letter-spacing:.04em}
+.who-people{display:none}
+.who-coordinates{display:none}
 .who-company-line{min-height:28px;font-size:1.65vw;gap:10px}
 .who-editorial{padding:32px 6% 38px}
 .who-statement-grid{grid-template-columns:minmax(0,1fr) 23%;gap:10px;margin-bottom:26px}

@@ -6,8 +6,27 @@ import './CTASection.css';
 export default function CTASection({
   primaryCta = { label: 'Discuss a project', href: 'mailto:projects@ajjayer.ae' },
   secondaryCta = { label: '+971 54 169 6975', href: 'tel:+971541696975' },
+  kickerNum,
+  kickerTitle,
+  headlinePre,
+  headlineEm,
+  headlinePost,
+  description,
+  bgImage,
 }) {
   const reduced = useReducedMotion();
+  const isAboutPage = typeof window !== 'undefined' && /^\/about\/?$/.test(window.location.pathname);
+
+  const num = kickerNum ?? (isAboutPage ? '04' : '06');
+  const title = kickerTitle ?? (isAboutPage ? 'PROJECT CONSULTATION & PARTNERSHIPS' : 'INITIATE CONSULTATION');
+  const hPre = headlinePre ?? (isAboutPage ? 'Ready to shape' : 'Ready to build');
+  const hEm = headlineEm ?? (isAboutPage ? 'A stronger' : 'Your next');
+  const hPost = headlinePost ?? (isAboutPage ? 'tomorrow?' : 'landmark?');
+  const desc = description ?? (isAboutPage
+    ? 'Connect with AJJAYER\'s engineering leadership in Dubai. Whether partnering on turnkey commercial contracting, high-precision structural steel fabrication, pre-engineered buildings, or architectural infrastructure across the UAE, our team delivers disciplined execution, certified safety, and lasting value.'
+    : 'Whether you are executing large-scale commercial developments, tensile structures, pre-engineered buildings, or custom industrial fabrication in Dubai and across the UAE, AJJAYER delivers disciplined engineering, precision craftsmanship, and uncompromised safety.'
+  );
+  const imageSrc = bgImage ?? (isAboutPage ? '/about/CTA.png' : '/home/CTA.png');
 
   const reveal = (delay = 0, yOffset = 14) => ({
     initial: reduced ? false : { opacity: 0, y: yOffset },
@@ -21,13 +40,33 @@ export default function CTASection({
   });
 
   return (
-    <section id="contact" className="cta-section" aria-labelledby="cta-heading">
+    <section
+      id="contact"
+      className="cta-section"
+      aria-labelledby="cta-heading"
+      itemScope
+      itemType="https://schema.org/ContactPoint"
+    >
+      {/* Hidden SEO Microdata for ContactPoint & Contractor Consultation */}
+      <meta itemProp="contactType" content="Project Inquiry and Contracting Consultation" />
+      <meta itemProp="telephone" content="+971541696975" />
+      <meta itemProp="email" content="projects@ajjayer.ae" />
+      <meta itemProp="areaServed" content="United Arab Emirates" />
+      <meta itemProp="availableLanguage" content="English, Arabic" />
+      <meta itemProp="hoursAvailable" content="Mo-Sa 08:00-18:00" />
+      <meta itemProp="name" content="AJJAYER Construction & Engineering Project Consultation" />
+      <meta itemProp="description" content={desc} />
+
       {/* Background Photo */}
       <img
-        src="/home/CTA.png"
-        alt=""
-        aria-hidden="true"
+        src={imageSrc}
+        alt="AJJAYER construction engineers and site leadership overlooking Dubai skyline construction projects at sunset"
+        title="Consult AJJAYER Construction & Structural Engineering Dubai"
+        loading="lazy"
+        width="1920"
+        height="1080"
         className="cta-bg-photo"
+        itemProp="image"
       />
       <div className="cta-bg-overlay" aria-hidden="true" />
       <div className="cta-grid-bg" aria-hidden="true" />
@@ -73,23 +112,26 @@ export default function CTASection({
         {/* Section Top Header */}
         <div className="cta-header-top">
           <motion.div className="cta-kicker-group" {...reveal(0)}>
-            <span className="cta-kicker-num">06</span>
+            <span className="cta-kicker-num">{num}</span>
             <span className="cta-kicker-rule" aria-hidden="true" />
-            <h2 className="cta-kicker-title">INITIATE CONSULTATION</h2>
+            <span className="cta-kicker-title">{title}</span>
           </motion.div>
+          <div className="cta-location-tag" aria-hidden="true">
+            DUBAI, UAE // GENERAL CONTRACTING
+          </div>
         </div>
 
         {/* Focused Architectural Call to Action Block */}
         <div className="cta-content-wrap">
-          <h2 id="cta-heading" className="cta-headline">
-            <motion.span {...reveal(0.12)}>Ready to build</motion.span>
+          <h2 id="cta-heading" className="cta-headline" itemProp="name">
+            <motion.span {...reveal(0.12)}>{hPre}</motion.span>
             <motion.span {...reveal(0.2)}>
-              Your next <em>landmark?</em>
+              {hEm} <em>{hPost}</em>
             </motion.span>
           </h2>
 
-          <motion.p className="cta-description" {...reveal(0.26)}>
-            Whether you are executing large-scale commercial developments, tensile structures, pre-engineered buildings, or custom industrial fabrication in the UAE, AJJAYER delivers disciplined engineering, precision craftsmanship, and uncompromised safety.
+          <motion.p className="cta-description" {...reveal(0.26)} itemProp="text">
+            {desc}
           </motion.p>
 
           <motion.div
@@ -98,27 +140,30 @@ export default function CTASection({
             aria-label="Consultation Call to Actions"
             {...reveal(0.34)}
           >
-            <motion.button
-              type="button"
-              className="cta-btn cta-btn-primary cursor-default"
-              aria-label="Discuss a project with AJJAYER"
+            <motion.a
+              href={primaryCta.href}
+              className="cta-btn cta-btn-primary"
+              aria-label="Discuss a project with AJJAYER Engineering Team in Dubai"
+              itemProp="email"
               whileHover={{ y: -2, backgroundColor: '#dca77b' }}
               whileTap={{ y: 0 }}
             >
               <span>{primaryCta.label}</span>
               <ArrowRight size={17} aria-hidden="true" />
-            </motion.button>
+            </motion.a>
 
-            <motion.button
-              type="button"
-              className="cta-btn cta-btn-primary cursor-default"
-              aria-label="Call AJJAYER Dubai Headquarters directly"
-              whileHover={{ y: -2, backgroundColor: '#dca77b' }}
+            <motion.a
+              href={secondaryCta.href}
+              className="cta-btn cta-btn-secondary"
+              aria-label="Call AJJAYER Dubai Headquarters directly at +971 54 169 6975"
+              itemProp="telephone"
+              whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >
+              <Phone size={16} aria-hidden="true" />
               <span>{secondaryCta.label}</span>
               <ArrowRight size={17} aria-hidden="true" />
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
       </div>

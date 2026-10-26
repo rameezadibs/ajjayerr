@@ -14,7 +14,8 @@ const navItems = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const activeSection = 'home';
+  const isAboutPage = typeof window !== 'undefined' && /^\/about\/?$/.test(window.location.pathname);
+  const activeSection = isAboutPage ? 'who-we-are' : 'home';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('EN');
@@ -50,15 +51,36 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Smooth scroll handler (activeSection remains 'home' since we are on the home page)
+  // Smooth scroll handler & multi-page navigation
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+
+    if (targetId === 'who-we-are') {
+      if (isAboutPage) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.location.assign('/about');
+      }
+      return;
+    }
+
+    if (isAboutPage) {
+      if (targetId === 'home') {
+        window.location.assign('/');
+      } else {
+        window.location.assign(`/#${targetId}`);
+      }
+      return;
+    }
+
     const target = document.getElementById(targetId);
     if (target) {
       const yOffset = -80; // Offset for the floating navbar height
       const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: targetId === 'home' ? 0 : y, behavior: 'smooth' });
+    } else if (targetId === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -76,7 +98,7 @@ export default function Navbar() {
         >
           {/* Brand Logo */}
           <a
-            href="#home"
+            href={isAboutPage ? '/' : '#home'}
             className="navbar-brand-link"
             onClick={(e) => handleNavClick(e, 'home')}
             aria-label="AJJAYER Home"
@@ -321,6 +343,8 @@ export default function Navbar() {
                   const contactEl = document.getElementById('contact');
                   if (contactEl) {
                     contactEl.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    window.location.assign('/#contact');
                   }
                 }}
               >

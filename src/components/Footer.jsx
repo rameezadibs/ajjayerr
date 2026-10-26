@@ -42,6 +42,9 @@ const navColumns = [
 ];
 
 export default function Footer() {
+  const isAboutPage = typeof window !== 'undefined' && /^\/about\/?$/.test(window.location.pathname);
+  const getHref = (hash) => (isAboutPage ? `/${hash}` : hash);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -59,7 +62,11 @@ export default function Footer() {
            ================================================================== */}
         <div className="footer-top-row">
           <div className="footer-brand-block">
-            <a href="#home" onClick={scrollToTop} aria-label="AJJAYER Home">
+            <a
+              href={isAboutPage ? '/' : '#home'}
+              onClick={isAboutPage ? undefined : scrollToTop}
+              aria-label="AJJAYER Home"
+            >
               <Brand className="footer-brand-logo" />
             </a>
             <p className="footer-brand-motto">
@@ -81,7 +88,7 @@ export default function Footer() {
               <ul className="footer-links-list">
                 {col.links.map((link) => (
                   <li key={link.label} className="footer-link-item">
-                    <a href={link.href}>
+                    <a href={getHref(link.href)}>
                       <span>{link.label}</span>
                     </a>
                   </li>
@@ -152,10 +159,10 @@ export default function Footer() {
 
           <div className="footer-bottom-right">
             <ul className="footer-legal-links">
-              <li><a href="#home">Privacy Policy</a></li>
-              <li><a href="#home">Terms of Engagement</a></li>
-              <li><a href="#home">HSE & Quality Policy</a></li>
-              <li><a href="#home">Sitemap</a></li>
+              <li><a href={getHref('#home')}>Privacy Policy</a></li>
+              <li><a href={getHref('#home')}>Terms of Engagement</a></li>
+              <li><a href={getHref('#home')}>HSE & Quality Policy</a></li>
+              <li><a href={getHref('#home')}>Sitemap</a></li>
             </ul>
 
             <button

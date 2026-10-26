@@ -1,0 +1,5 @@
+Tool: built-in image_gen, edit mode.
+Source: Stronger Tomorrow_ Architectural Vision (1).png supplied by the user.
+Output: public/assets/about-architecture.png
+
+Use case: precise-object-edit. Asset type: background for a responsive architectural website hero. Edit the supplied image: remove ALL lettering, numbers, CTA rectangle and arrow, and thin superimposed drafting lines/circles. Reconstruct the underlying blank warm ivory wall on left and stone floor below. Keep the original panoramic aspect ratio and composition EXACTLY: tree in center-left, monumental sweeping concrete crescent and graphite underside on right, bronze edges, Dubai skyline and Burj Khalifa, golden sunlight, reflecting pool, stairs, materials and shadows. Do not redesign or move architectural elements. Left half must stay a blank pale ivory surface for HTML text overlay. No text, no typography, no logo. Save the resulting image.

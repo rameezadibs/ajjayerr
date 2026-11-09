@@ -1,0 +1,1058 @@
+/* ==========================================================================
+   AJJAYER BLOGS / INSIGHTS EDITORIAL STYLES
+   Palette:
+     Warm Ivory: #F3EFE8
+     Bronze:     #A47756
+     Copper:     #CA9468
+     Deep Copper:#925131
+     Charcoal:   #28211B
+     Graphite:   #4D443A
+     White:      #FFFFFF
+   ========================================================================== */
+
+.blogs-hub-page {
+  background-color: #f3efe8;
+  color: #28211b;
+  min-height: 100vh;
+  padding-top: 5.5rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+}
+
+.blogs-container {
+  width: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .blogs-container {
+    padding: 0 3rem;
+  }
+}
+
+/* ==========================================================================
+   1. HERO / SEO INTRO
+   ========================================================================== */
+
+.blogs-hero-section {
+  position: relative;
+  padding: 3.5rem 0 3rem;
+  border-bottom: 1px solid rgba(164, 119, 86, 0.2);
+  background: #f3efe8;
+  overflow: hidden;
+}
+
+/* Subtle architectural linework background */
+.blogs-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(164, 119, 86, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(164, 119, 86, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.blogs-hero-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.blogs-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 980px;
+}
+
+.blogs-hero-label-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #925131;
+}
+
+.blogs-hero-crosshair {
+  color: #a47756;
+  font-weight: 700;
+}
+
+.blogs-hero-line {
+  width: 32px;
+  height: 1px;
+  background: #a47756;
+}
+
+.blogs-hero-h1 {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  color: #1f1f1d;
+  margin: 0 0 1.5rem;
+}
+
+.blogs-h1-highlight {
+  color: #a47756;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.blogs-hero-intro {
+  font-size: clamp(1.02rem, 1.35vw, 1.2rem);
+  line-height: 1.7;
+  color: #4d443a;
+  max-width: 760px;
+  margin: 0 0 2rem;
+  font-weight: 350;
+  letter-spacing: 0.01em;
+}
+
+.blogs-hero-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: #7a6e60;
+  text-transform: uppercase;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(164, 119, 86, 0.25);
+}
+
+.blogs-hero-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ==========================================================================
+   2. BLOG SEARCH & FILTER BAR
+   ========================================================================== */
+
+.blogs-filter-bar {
+  padding: 2.25rem 0 2rem;
+  position: relative;
+  z-index: 5;
+  background: #2b251f;
+}
+
+.blogs-search-wrapper {
+  position: relative;
+  max-width: 580px;
+  margin-bottom: 2rem;
+}
+
+.blogs-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8b9298;
+  pointer-events: none;
+}
+
+.blogs-search-input {
+  width: 100%;
+  padding: 0.85rem 2.85rem 0.85rem 2.85rem;
+  background: rgba(18, 22, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.92rem;
+  color: #f5f5f3;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.blogs-search-input:focus {
+  border-color: #ca9468;
+  box-shadow: 0 0 0 3px rgba(202, 148, 104, 0.2);
+}
+
+.blogs-search-input::placeholder {
+  color: #8b9298;
+  font-weight: 350;
+}
+
+.blogs-search-clear {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #8b9298;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blogs-search-clear:hover {
+  color: #ca9468;
+}
+
+/* ==========================================================================
+   3. CATEGORY NAVIGATION (DESKTOP ROW / MOBILE HORIZONTAL SCROLL)
+   ========================================================================== */
+
+.blogs-categories-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  scrollbar-width: thin;
+  scrollbar-color: #ca9468 #1a1e20;
+  -webkit-overflow-scrolling: touch;
+}
+
+.blogs-category-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #c7cbd1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.blogs-category-tab:hover {
+  color: #f5f5f3;
+  border-color: #ca9468;
+  background: rgba(202, 148, 104, 0.12);
+}
+
+.blogs-category-tab.is-active {
+  background: rgba(202, 148, 104, 0.2);
+  color: #ca9468;
+  border-color: #ca9468;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.blogs-category-tab.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ca9468;
+}
+
+.category-tab-count {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.7rem;
+  opacity: 0.75;
+}
+
+/* ==========================================================================
+   4. FEATURED ARTICLE (55-60% IMAGE, 40-45% CONTENT)
+   ========================================================================== */
+
+.blogs-featured-section {
+  padding: 3rem 0 4.5rem;
+  background: #2b251f;
+}
+
+.blogs-featured-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: rgba(18, 22, 24, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(202, 148, 104, 0.4);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.blogs-featured-card:hover {
+  border-color: rgba(202, 148, 104, 0.6);
+}
+
+@media (min-width: 992px) {
+  .blogs-featured-card {
+    grid-template-columns: 58% 42%;
+    align-items: stretch;
+  }
+}
+
+.blogs-featured-visual {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  background: #2f2922;
+}
+
+@media (min-width: 992px) {
+  .blogs-featured-visual {
+    min-height: 440px;
+  }
+}
+
+.blogs-featured-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  display: block;
+}
+
+.blogs-featured-card:hover .blogs-featured-img {
+  transform: scale(1.025);
+}
+
+.blogs-featured-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12, 14, 15, 0.1) 0%, rgba(12, 14, 15, 0.5) 100%);
+  pointer-events: none;
+}
+
+.blogs-featured-tag-badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: #ca9468;
+  color: #0c1011;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  text-transform: uppercase;
+  border-radius: 1px;
+}
+
+.blogs-featured-content {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(18, 22, 24, 0.85);
+}
+
+@media (min-width: 992px) {
+  .blogs-featured-content {
+    padding: 3.5rem 3rem;
+  }
+}
+
+.blogs-featured-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ca9468;
+  font-weight: 600;
+}
+
+.blogs-featured-h2 {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(1.8rem, 2.6vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.18;
+  color: #f5f5f3;
+  margin: 0 0 1.25rem;
+}
+
+.blogs-featured-h2 a {
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.blogs-featured-h2 a:hover {
+  color: #ca9468;
+}
+
+.blogs-featured-excerpt {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #a4abb2;
+  margin: 0 0 2rem;
+  font-weight: 300;
+}
+
+.blogs-featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: #727a80;
+  text-transform: uppercase;
+}
+
+.blogs-featured-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.blogs-read-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ca9468;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.blogs-read-cta:hover {
+  color: #dfb28e;
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   5. LATEST ARTICLES SECTION (3-COL DESKTOP, 2-COL TABLET, 1-COL MOBILE)
+   ========================================================================== */
+
+.blogs-latest-section {
+  padding: 4.5rem 0 5.5rem;
+  background: #2b251f;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.blogs-section-header {
+  margin-bottom: 2.75rem;
+}
+
+.blogs-section-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ca9468;
+}
+
+.blogs-section-tag-line {
+  width: 24px;
+  height: 1px;
+  background: #ca9468;
+}
+
+.blogs-section-h2 {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #f5f5f3;
+  margin: 0;
+}
+
+.blogs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 680px) {
+  .blogs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1040px) {
+  .blogs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.blog-card {
+  background: rgba(18, 22, 24, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(202, 148, 104, 0.4);
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(202, 148, 104, 0.6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.blog-card-visual {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #2f2922;
+}
+
+.blog-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.blog-card:hover .blog-card-img {
+  transform: scale(1.04);
+}
+
+.blog-card-body {
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.blog-card-category {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ca9468;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.blog-card-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #f5f5f3;
+  margin: 0 0 0.85rem;
+}
+
+.blog-card-title a {
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.blog-card-title a:hover {
+  color: #ca9468;
+}
+
+.blog-card-excerpt {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #a4abb2;
+  margin: 0 0 1.5rem;
+  font-weight: 300;
+  flex-grow: 1;
+}
+
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: #727a80;
+  text-transform: uppercase;
+}
+
+.blog-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: #ca9468;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.blog-card:hover .blog-card-cta {
+  transform: translateX(3px);
+  color: #dfb28e;
+}
+
+/* Empty state */
+.blogs-empty-state {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  background: rgba(18, 22, 24, 0.6);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+.blogs-empty-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.8rem;
+  color: #f5f5f3;
+  margin-bottom: 0.75rem;
+}
+
+.blogs-empty-copy {
+  color: #a4abb2;
+  margin-bottom: 1.5rem;
+}
+
+.blogs-reset-btn {
+  padding: 0.65rem 1.4rem;
+  background: #ca9468;
+  color: #0c1011;
+  border: none;
+  border-radius: 2px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   6. HIGH-INTENT GUIDES SECTION (EDITORIAL 2-COLUMN LIST)
+   ========================================================================== */
+
+.blogs-guides-section {
+  padding: 4.5rem 0 5rem;
+  background: #ede8df;
+  border-top: 1px solid rgba(164, 119, 86, 0.2);
+  border-bottom: 1px solid rgba(164, 119, 86, 0.2);
+}
+
+.blogs-guides-section .blogs-section-h2 {
+  color: #1f1f1d;
+}
+
+.blogs-guides-section .blogs-section-tag {
+  color: #925131;
+}
+
+.blogs-guides-section .blogs-section-tag-line {
+  background: #a47756;
+}
+
+.blogs-guides-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 800px) {
+  .blogs-guides-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.guide-item-card {
+  background: #ffffff;
+  border: 1px solid #dcd3c5;
+  border-left: 3px solid #a47756;
+  padding: 1.85rem 1.75rem;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+}
+
+.guide-item-card:hover {
+  background: #fdfcf9;
+  border-left-color: #925131;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(77, 68, 58, 0.06);
+}
+
+.guide-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.guide-category {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a47756;
+  font-weight: 600;
+}
+
+.guide-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: #7a6e60;
+}
+
+.guide-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #1f1f1d;
+  margin: 0 0 0.65rem;
+}
+
+.guide-desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #55504a;
+  margin: 0 0 1.25rem;
+  font-weight: 350;
+}
+
+.guide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #925131;
+  text-decoration: none;
+  align-self: flex-start;
+  transition: transform 0.2s ease;
+}
+
+.guide-item-card:hover .guide-link {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   7. SERVICE INTERNAL LINKING SECTION
+   ========================================================================== */
+
+.blogs-services-linking-section {
+  padding: 4.5rem 0 5rem;
+  background: #f3efe8;
+}
+
+.blogs-services-linking-section .blogs-section-h2 {
+  color: #1f1f1d;
+}
+
+.blogs-services-linking-section .blogs-section-tag {
+  color: #925131;
+}
+
+.blogs-services-linking-section .blogs-section-tag-line {
+  background: #a47756;
+}
+
+.services-linking-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .services-linking-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-linking-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.service-linking-card {
+  background: #ffffff;
+  border: 1px solid #ded5c7;
+  border-radius: 2px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.service-linking-card:hover {
+  border-color: #a47756;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(77, 68, 58, 0.06);
+}
+
+.service-linking-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #a47756;
+  margin-bottom: 0.5rem;
+}
+
+.service-linking-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #1f1f1d;
+  margin: 0 0 0.5rem;
+}
+
+.service-linking-copy {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #635b50;
+  margin: 0 0 1.25rem;
+  font-weight: 350;
+}
+
+.service-linking-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #925131;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   8. FINAL CTA (PROJECT CONSULTATION)
+   ========================================================================== */
+
+.blogs-cta-section {
+  padding: 5rem 0 6rem;
+  background: #211c17;
+  color: #f5f5f3;
+  position: relative;
+  overflow: hidden;
+}
+
+.blogs-cta-card {
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(24, 30, 33, 0.95), rgba(12, 16, 17, 0.98));
+  border: 1px solid rgba(164, 119, 86, 0.35);
+  border-radius: 2px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .blogs-cta-card {
+    grid-template-columns: 1.6fr 1fr;
+    align-items: center;
+  }
+}
+
+.blogs-cta-eyebrow {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: #ca9468;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.blogs-cta-h2 {
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #f5f5f3;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.blogs-cta-copy {
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: #b9bec4;
+  margin: 0 0 2rem;
+  font-weight: 300;
+  max-width: 580px;
+}
+
+.blogs-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.blogs-cta-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #a47756;
+  color: #ffffff;
+  padding: 0.9rem 1.85rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  border: 1px solid #a47756;
+}
+
+.blogs-cta-btn-primary:hover {
+  background: #ca9468;
+  border-color: #ca9468;
+  color: #0c1011;
+  transform: translateY(-2px);
+}
+
+.blogs-cta-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: #e5e7eb;
+  padding: 0.9rem 1.85rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.82rem;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.blogs-cta-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: #ca9468;
+  color: #ca9468;
+  transform: translateY(-2px);
+}
+
+.blogs-cta-contact-box {
+  background: rgba(12, 16, 17, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 1.75rem;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.blogs-cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.blogs-cta-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #838a90;
+}
+
+.blogs-cta-val {
+  font-size: 0.9rem;
+  color: #e5e7eb;
+}
+
+/* ==========================================================================
+   9. RTL (ARABIC) REFINEMENTS
+   ========================================================================== */
+
+body.rtl-mode .blogs-hero-h1,
+body.rtl-mode .blogs-featured-h2,
+body.rtl-mode .blogs-section-h2,
+body.rtl-mode .blog-card-title,
+body.rtl-mode .guide-title,
+body.rtl-mode .service-linking-title,
+body.rtl-mode .blogs-cta-h2,
+body.rtl-mode .blogs-empty-title {
+  font-family: 'Amiri', 'Cairo', 'Segoe UI', Tahoma, serif;
+  letter-spacing: 0;
+}
+
+body.rtl-mode .blogs-hero-intro,
+body.rtl-mode .blogs-featured-excerpt,
+body.rtl-mode .blog-card-excerpt,
+body.rtl-mode .guide-desc,
+body.rtl-mode .service-linking-copy,
+body.rtl-mode .blogs-cta-copy,
+body.rtl-mode .blogs-empty-copy {
+  font-family: 'Cairo', 'Montserrat', 'Segoe UI', sans-serif;
+  letter-spacing: 0;
+  line-height: 1.8;
+}
+
+body.rtl-mode .blogs-featured-tag-badge {
+  left: auto;
+  right: 1.5rem;
+}
+
+body.rtl-mode .blogs-search-icon {
+  left: auto;
+  right: 1.15rem;
+}
+
+body.rtl-mode .blogs-search-clear {
+  right: auto;
+  left: 1.15rem;
+}
+
+body.rtl-mode .guide-item-card {
+  border-left: 1px solid #dcd3c5;
+  border-right: 3px solid #a47756;
+}
+
+body.rtl-mode .guide-item-card:hover {
+  border-right-color: #925131;
+}
+
+body.rtl-mode .blogs-read-cta:hover {
+  transform: translateX(-4px);
+}
+
+body.rtl-mode .blog-card:hover .blog-card-cta {
+  transform: translateX(-3px);
+}
+
+body.rtl-mode .guide-item-card:hover .guide-link {
+  transform: translateX(-3px);
+}
+

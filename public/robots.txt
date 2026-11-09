@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /services/
+Allow: /blogs/
+Allow: /about
+Allow: /assets/
+Allow: /home/
+
+# Sitemap location
+Sitemap: https://ajjayer.ae/sitemap.xml

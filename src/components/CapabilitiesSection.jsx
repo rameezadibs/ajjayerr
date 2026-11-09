@@ -1,7 +1,10 @@
 import { useEffect, useId, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, MotionConfig, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { capabilities } from './capabilitiesData';
+import { useLanguage } from '../context/LanguageContext';
+import { servicesArabicData } from '../locales/translations';
 import './CapabilitiesSection.css';
 
 function CapabilityImage({ image, className = '', decorative = false, thumbMode = false }) {
@@ -31,7 +34,13 @@ export default function CapabilitiesSection({ servicesHref = '/services', capabi
   const tabs = useRef([]);
   const id = useId();
   const reduced = useReducedMotion();
+  const { lang, isRTL, t } = useLanguage();
   const active = capabilities.find(item => item.id === activeId);
+
+  const introHeadingLines = isRTL
+    ? ['فريق متكامل.', 'تخصصات متعددة.', 'معيار واحد', 'للتنفيذ المتميّز.']
+    : ['One team.', 'Multiple disciplines.', 'One standard', 'of execution.'];
+
   useEffect(() => {
     const query = window.matchMedia('(max-width: 767px)');
     const update = () => setMobile(query.matches);
@@ -55,17 +64,64 @@ export default function CapabilitiesSection({ servicesHref = '/services', capabi
     event.preventDefault(); setActiveId(capabilities[next].id); tabs.current[next]?.focus({ preventScroll: true });
     if (mobile) tabs.current[next]?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
   };
+  const arabicBenefitsMap = {
+    'general-construction': [
+      ['إدارة', 'الموقع'],
+      ['تسليم', 'منسّق'],
+      ['ضمان', 'الجودة'],
+      ['ضبط', 'البرنامج']
+    ],
+    'steel-structures-fabrication': [
+      ['تصنيع', 'مخصص'],
+      ['سلامة', 'إنشائية'],
+      ['لحام', 'معتمد'],
+      ['تسليم', 'دقيق']
+    ],
+    'tensile-shade-structures': [
+      ['شد', 'هندسي'],
+      ['حماية', 'شمسية'],
+      ['مقاومة', 'المناخ'],
+      ['جمال', 'معماري']
+    ],
+    'car-parking-shades-pergolas': [
+      ['بحور', 'كابولية'],
+      ['حماية', 'شاملة'],
+      ['مقاطع', 'خاصة'],
+      ['تركيب', 'سريع']
+    ],
+    'warehouses-pre-engineered-buildings': [
+      ['بحور', 'مفتوحة'],
+      ['تصميم', 'سابق الهندسة'],
+      ['متانة', 'صناعية'],
+      ['تسليم', 'مفتاح']
+    ],
+    'fit-out-finishing': [
+      ['مواد', 'فاخرة'],
+      ['تكامل', 'داخلي'],
+      ['دقة', 'التفاصيل'],
+      ['فحص', 'نهائي']
+    ]
+  };
+
   return <MotionConfig reducedMotion="user"><section id="capabilities" className="cap-section relative overflow-hidden" aria-labelledby={`${id}-heading`}>
     <div className="cap-main grid">
       <div className="cap-index relative min-w-0">
-        <span className="cap-vertical-note" aria-hidden="true">General Construction · Steel · Tensile · Warehouses · Fit-Out</span>
-        <motion.p className="cap-eyebrow flex items-center" {...reveal()}><span>03</span><i/><span>Our Services</span></motion.p>
-        <h2 id={`${id}-heading`} className="cap-intro-heading">{['One team.', 'Multiple disciplines.', 'One standard', 'of execution.'].map((line,i) => <motion.span key={line} className={i===2 ? 'cap-accent' : ''} {...reveal(.05+i*.05)}>{line}</motion.span>)}</h2>
-        <motion.p className="cap-intro-copy" {...reveal(.18)}>From general construction and structural steel to architectural tensile structures, pre-engineered warehouses and turnkey fit-outs, AJJAYER delivers end-to-end engineering excellence across the UAE.</motion.p>
-        <div className="cap-tabs" role="tablist" aria-label="Choose a service" aria-orientation={mobile ? 'horizontal' : 'vertical'}>{capabilities.map((item,i) => <motion.button key={item.id} ref={el => { tabs.current[i]=el; }} id={`${id}-tab-${item.id}`} type="button" role="tab" aria-selected={activeId===item.id} aria-controls={`${id}-panel`} tabIndex={activeId===item.id ? 0 : -1} className={`cap-tab ${activeId===item.id ? 'is-active' : ''}`} onClick={() => setActiveId(item.id)} onKeyDown={event => switchTab(event,i)} {...reveal(.15+i*.04)}>
+        <span className="cap-vertical-note" aria-hidden="true">
+          {isRTL ? 'مقاولات عامة · فولاذ · مظلات مشدودة · مستودعات · تشطيبات' : 'General Construction · Steel · Tensile · Warehouses · Fit-Out'}
+        </span>
+        <motion.p className="cap-eyebrow flex items-center" {...reveal()}><span>03</span><i/><span>{t('nav.ourServices')}</span></motion.p>
+        <h2 id={`${id}-heading`} className="cap-intro-heading">{introHeadingLines.map((line,i) => <motion.span key={line} className={i===2 ? 'cap-accent' : ''} {...reveal(.05+i*.05)}>{line}</motion.span>)}</h2>
+        <motion.p className="cap-intro-copy" {...reveal(.18)}>
+          {isRTL
+            ? 'من المقاولات العامة والهياكل الفولاذية إلى الأشرعة المشدودة ومستودعات المباني الجاهزة والتشطيبات المتكاملة، تقدم الجيّر تميزاً هندسياً شاملاً في كافة أرجاء دولة الإمارات.'
+            : 'From general construction and structural steel to architectural tensile structures, pre-engineered warehouses and turnkey fit-outs, AJJAYER delivers end-to-end engineering excellence across the UAE.'}
+        </motion.p>
+        <div className="cap-tabs" role="tablist" aria-label="Choose a service" aria-orientation={mobile ? 'horizontal' : 'vertical'}>{capabilities.map((item,i) => {
+          const locItemLabel = isRTL ? (servicesArabicData[item.slug]?.shortTitle || servicesArabicData[item.slug]?.title || item.label) : item.label;
+          return <motion.button key={item.id} ref={el => { tabs.current[i]=el; }} id={`${id}-tab-${item.id}`} type="button" role="tab" aria-selected={activeId===item.id} aria-controls={`${id}-panel`} tabIndex={activeId===item.id ? 0 : -1} className={`cap-tab ${activeId===item.id ? 'is-active' : ''}`} onClick={() => setActiveId(item.id)} onKeyDown={event => switchTab(event,i)} {...reveal(.15+i*.04)}>
           {activeId===item.id && <motion.span className="cap-active-indicator" layoutId={`${id}-active`} transition={{duration:reduced ? 0 : .35, ease:'easeOut'}}/>}
-          <span className="cap-tab-number">{item.id}</span><CapabilityImage image={item.image} className="cap-thumb" decorative thumbMode/><span className="cap-tab-label">{item.label}</span><span className="cap-tab-line" aria-hidden="true"/><ArrowRight size={18} strokeWidth={1.2}/>
-        </motion.button>)}</div>
+          <span className="cap-tab-number">{item.id}</span><CapabilityImage image={item.image} className="cap-thumb" decorative thumbMode/><span className="cap-tab-label">{locItemLabel}</span><span className="cap-tab-line" aria-hidden="true"/><ArrowRight size={18} strokeWidth={1.2}/>
+        </motion.button>;})}</div>
       </div>
       <div id={`${id}-panel`} className="cap-feature relative min-w-0" role="tabpanel" aria-labelledby={`${id}-tab-${activeId}`} tabIndex={0}>
         {mobile && (
@@ -80,7 +136,7 @@ export default function CapabilitiesSection({ servicesHref = '/services', capabi
               }}
               aria-label="Previous service"
             >
-              <span>‹</span> Previous
+              <span>‹</span> {t('capabilities.mobileNavPrev')}
             </button>
             <span className="cap-mobile-nav-counter"><b>{active.id}</b> / 06</span>
             <button
@@ -93,7 +149,7 @@ export default function CapabilitiesSection({ servicesHref = '/services', capabi
               }}
               aria-label="Next service"
             >
-              Next <span>›</span>
+              {t('capabilities.mobileNavNext')} <span>›</span>
             </button>
           </div>
         )}
@@ -102,15 +158,42 @@ export default function CapabilitiesSection({ servicesHref = '/services', capabi
         <AnimatePresence mode="wait" initial={false}><motion.div key={activeId} className="cap-drawing-block" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:reduced ? 0 : .2}}><TechnicalDrawing type={active.drawing}/><div className="cap-drawing-note"><p>{active.detail[0]}</p>{active.detail.slice(1).map(line => <span key={line}>{line}</span>)}</div></motion.div></AnimatePresence>
         <div className="cap-feature-content relative">
           <AnimatePresence mode="wait" initial={false}><motion.div key={activeId} initial={reduced ? false : {opacity:0,y:12}} animate={{opacity:1,y:0}} exit={{opacity:0,y:reduced ? 0 : -8}} transition={{duration:reduced ? 0 : .22}}>
-            <p className="cap-eyebrow flex items-center"><span>{active.id}</span><i/><span>Service</span></p>
-            <h3 className="cap-feature-title"><span>{active.title[0]}</span><span className="cap-accent">{active.title[1]}</span></h3>
-            <p className="cap-feature-description">{active.description}</p>
-            <motion.button type="button" className="cap-explore inline-flex items-center justify-between cursor-default" whileHover={{ y: -2, backgroundColor: '#dca77b' }} whileTap={{ y: 0 }}><span>Explore service</span> <ArrowRight size={18} strokeWidth={1.2}/></motion.button>
-            <div className="cap-benefits grid grid-cols-4">{active.benefits.map(([Icon,line1,line2],i) => <motion.div key={line1+line2} {...reveal(i*.05)}><Icon size={27} strokeWidth={1}/><p>{line1}<br/>{line2}</p></motion.div>)}</div>
+            <p className="cap-eyebrow flex items-center"><span>{active.id}</span><i/><span>{isRTL ? 'الخدمة' : 'Service'}</span></p>
+            <h3 className="cap-feature-title">
+              {isRTL ? (
+                <span>{servicesArabicData[active.slug]?.title || active.label}</span>
+              ) : (
+                <><span>{active.title[0]}</span> <span className="cap-accent">{active.title[1]}</span></>
+              )}
+            </h3>
+            <p className="cap-feature-description">
+              {isRTL ? (servicesArabicData[active.slug]?.tagline || active.description) : active.description}
+            </p>
+            <Link to={`/services/${active.slug}`} className="cap-explore inline-flex items-center justify-between">
+              <span>{t('capabilities.exploreService')}</span> <ArrowRight size={18} strokeWidth={1.2}/>
+            </Link>
+            <div className="cap-benefits grid grid-cols-4">
+              {active.benefits.map(([Icon,line1,line2],i) => {
+                const arBenefit = isRTL ? arabicBenefitsMap[active.slug]?.[i] : null;
+                const l1 = arBenefit ? arBenefit[0] : line1;
+                const l2 = arBenefit ? arBenefit[1] : line2;
+                return (
+                  <motion.div key={line1+line2} {...reveal(i*.05)}>
+                    <Icon size={27} strokeWidth={1}/>
+                    <p>{l1}<br/>{l2}</p>
+                  </motion.div>
+                );
+              })}
+            </div>
           </motion.div></AnimatePresence>
         </div>
       </div>
     </div>
-    <div className="cap-section-footer flex items-center justify-between"><p><span>06</span> Services</p><span className="inline-flex items-center cursor-default">Explore all services <ArrowRight size={16} strokeWidth={1.2}/></span></div>
+    <div className="cap-section-footer flex items-center justify-between">
+      <p>{isRTL ? <><span>06</span> تخصصات إنشائية</> : <><span>06</span> Services</>}</p>
+      <Link to="/services" className="inline-flex items-center hover:text-[#ca9468] transition-colors">
+        <span>{t('nav.exploreAllServices')}</span> <ArrowRight size={16} strokeWidth={1.2}/>
+      </Link>
+    </div>
   </section></MotionConfig>;
 }

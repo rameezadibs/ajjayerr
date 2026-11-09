@@ -1,11 +1,12 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Phone } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './CTASection.css';
 
 export default function CTASection({
-  primaryCta = { label: 'Discuss a project', href: 'mailto:projects@ajjayer.ae' },
-  secondaryCta = { label: '+971 54 169 6975', href: 'tel:+971541696975' },
+  primaryCta,
+  secondaryCta,
   kickerNum,
   kickerTitle,
   headlinePre,
@@ -15,17 +16,17 @@ export default function CTASection({
   bgImage,
 }) {
   const reduced = useReducedMotion();
+  const { t, isRTL } = useLanguage();
   const isAboutPage = typeof window !== 'undefined' && /^\/about\/?$/.test(window.location.pathname);
 
-  const num = kickerNum ?? (isAboutPage ? '04' : '06');
-  const title = kickerTitle ?? (isAboutPage ? 'PROJECT CONSULTATION & PARTNERSHIPS' : 'INITIATE CONSULTATION');
-  const hPre = headlinePre ?? (isAboutPage ? 'Ready to shape' : 'Ready to build');
-  const hEm = headlineEm ?? (isAboutPage ? 'A stronger' : 'Your next');
-  const hPost = headlinePost ?? (isAboutPage ? 'tomorrow?' : 'landmark?');
-  const desc = description ?? (isAboutPage
-    ? 'Connect with AJJAYER\'s engineering leadership in Dubai. Whether partnering on turnkey commercial contracting, high-precision structural steel fabrication, pre-engineered buildings, or architectural infrastructure across the UAE, our team delivers disciplined execution, certified safety, and lasting value.'
-    : 'Whether you are executing large-scale commercial developments, tensile structures, pre-engineered buildings, or custom industrial fabrication in Dubai and across the UAE, AJJAYER delivers disciplined engineering, precision craftsmanship, and uncompromised safety.'
-  );
+  const num = kickerNum ?? (isAboutPage ? t('cta.kickerNumAbout') : t('cta.kickerNumHome'));
+  const title = kickerTitle ?? (isAboutPage ? t('cta.kickerTitleAbout') : t('cta.kickerTitleHome'));
+  const hPre = headlinePre ?? (isAboutPage ? t('cta.hPreAbout') : t('cta.hPreHome'));
+  const hEm = headlineEm ?? (isAboutPage ? t('cta.hEmAbout') : t('cta.hEmHome'));
+  const hPost = headlinePost ?? (isAboutPage ? t('cta.hPostAbout') : t('cta.hPostHome'));
+  const desc = description ?? (isAboutPage ? t('cta.descAbout') : t('cta.descHome'));
+  const primary = primaryCta ?? { label: t('cta.primaryLabel') || 'Discuss a project', href: 'mailto:projects@ajjayer.ae' };
+  const secondary = secondaryCta ?? { label: t('cta.phoneLabel') || '+971 54 169 6975', href: 'tel:+971541696975' };
   const imageSrc = bgImage ?? (isAboutPage ? '/about/CTA.png' : '/home/CTA.png');
 
   const reveal = (delay = 0, yOffset = 14) => ({
@@ -117,7 +118,7 @@ export default function CTASection({
             <span className="cta-kicker-title">{title}</span>
           </motion.div>
           <div className="cta-location-tag" aria-hidden="true">
-            DUBAI, UAE // GENERAL CONTRACTING
+            {isRTL ? 'دبي، الإمارات // المقاولات العامة' : 'DUBAI, UAE // GENERAL CONTRACTING'}
           </div>
         </div>
 
@@ -141,19 +142,19 @@ export default function CTASection({
             {...reveal(0.34)}
           >
             <motion.a
-              href={primaryCta.href}
+              href={primary.href}
               className="cta-btn cta-btn-primary"
               aria-label="Discuss a project with AJJAYER Engineering Team in Dubai"
               itemProp="email"
               whileHover={{ y: -2, backgroundColor: '#dca77b' }}
               whileTap={{ y: 0 }}
             >
-              <span>{primaryCta.label}</span>
-              <ArrowRight size={17} aria-hidden="true" />
+              <span>{primary.label}</span>
+              <ArrowRight size={17} aria-hidden="true" style={{ transform: isRTL ? 'scaleX(-1)' : 'none' }} />
             </motion.a>
 
             <motion.a
-              href={secondaryCta.href}
+              href={secondary.href}
               className="cta-btn cta-btn-secondary"
               aria-label="Call AJJAYER Dubai Headquarters directly at +971 54 169 6975"
               itemProp="telephone"
@@ -161,8 +162,8 @@ export default function CTASection({
               whileTap={{ y: 0 }}
             >
               <Phone size={16} aria-hidden="true" />
-              <span>{secondaryCta.label}</span>
-              <ArrowRight size={17} aria-hidden="true" />
+              <span dir="ltr">{secondary.label}</span>
+              <ArrowRight size={17} aria-hidden="true" style={{ transform: isRTL ? 'scaleX(-1)' : 'none' }} />
             </motion.a>
           </motion.div>
         </div>

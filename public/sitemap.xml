@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage -->
+  <url>
+    <loc>https://ajjayer.ae/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/home/hero.png</image:loc>
+      <image:title>AJJAYER Construction, Engineering &amp; Metal Fabrication Dubai UAE</image:title>
+    </image:image>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://ajjayer.ae/about</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/assets/about-architecture.png</image:loc>
+      <image:title>About AJJAYER Constructions Contracting LLC</image:title>
+    </image:image>
+  </url>
+
+  <!-- Services Hub -->
+  <url>
+    <loc>https://ajjayer.ae/services</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/services/services-architecture.png</image:loc>
+      <image:title>AJJAYER Engineering &amp; Construction Services</image:title>
+    </image:image>
+  </url>
+
+  <!-- 01 General Construction -->
+  <url>
+    <loc>https://ajjayer.ae/services/general-construction</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/services/ajjayer-general-construction-dubai.webp</image:loc>
+      <image:title>General Construction Services in Dubai &amp; UAE | AJJAYER</image:title>
+    </image:image>
+  </url>
+
+  <!-- 02 Steel Structures & Fabrication -->
+  <url>
+    <loc>https://ajjayer.ae/services/steel-structures-fabrication</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/services/ajjayer-steel-structure-fabrication-dubai.webp</image:loc>
+      <image:title>Steel Structures &amp; Fabrication in Dubai | AJJAYER</image:title>
+    </image:image>
+  </url>
+
+  <!-- 03 Tensile Shade Structures -->
+  <url>
+    <loc>https://ajjayer.ae/services/tensile-shade-structures</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/services/tensile-shade-structures-uae.webp</image:loc>
+      <image:title>Tensile Shade Structure Solutions Dubai UAE | AJJAYER</image:title>
+    </image:image>
+  </url>
+
+  <!-- 04 Car Parking Shades & Pergolas -->
+  <url>
+    <loc>https://ajjayer.ae/services/car-parking-shades-pergolas</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/services/car-parking-shades-dubai.webp</image:loc>
+      <image:title>Car Parking Shades &amp; Pergolas Dubai | AJJAYER</image:title>
+    </image:image>
+  </url>
+
+  <!-- 05 Warehouses & Pre-Engineered Buildings -->
+  <url>
+    <loc>https://ajjayer.ae/services/warehouses-pre-engineered-buildings</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/services/pre-engineered-buildings-uae.webp</image:loc>
+      <image:title>Warehouses &amp; Pre-Engineered Buildings Dubai | AJJAYER</image:title>
+    </image:image>
+  </url>
+
+  <!-- 06 Fit-Out & Finishing -->
+  <url>
+    <loc>https://ajjayer.ae/services/fit-out-finishing</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/services/fit-out-finishing-dubai.webp</image:loc>
+      <image:title>Fit-Out &amp; Finishing Services Dubai UAE | AJJAYER</image:title>
+    </image:image>
+  </url>
+
+  <!-- Blogs & Technical Insights Hub -->
+  <url>
+    <loc>https://ajjayer.ae/blogs</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/blogs/blogs-knowledge-hub.webp</image:loc>
+      <image:title>Construction &amp; Engineering Insights Dubai, UAE | AJJAYER</image:title>
+    </image:image>
+  </url>
+
+  <!-- Blog Article 01: Steel Structures Dubai Guide -->
+  <url>
+    <loc>https://ajjayer.ae/blogs/steel-structures-dubai-guide</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/blogs/steel-structures-dubai-guide.webp</image:loc>
+      <image:title>Steel Structures in Dubai: A Practical Guide for Developers and Contractors</image:title>
+    </image:image>
+  </url>
+
+  <!-- Blog Article 02: Tensile Shade Structures UAE -->
+  <url>
+    <loc>https://ajjayer.ae/blogs/tensile-shade-structures-uae</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/blogs/tensile-shade-structures-uae.webp</image:loc>
+      <image:title>Tensile Shade Structures in the UAE: Design, Materials and Performance</image:title>
+    </image:image>
+  </url>
+
+  <!-- Blog Article 03: PEB vs Conventional Structures -->
+  <url>
+    <loc>https://ajjayer.ae/blogs/pre-engineered-buildings-vs-conventional-structures</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/blogs/pre-engineered-buildings-vs-conventional-structures.webp</image:loc>
+      <image:title>Pre-Engineered Buildings vs Conventional Structures</image:title>
+    </image:image>
+  </url>
+
+  <!-- Blog Article 04: How to Choose a Fit-Out Contractor Dubai -->
+  <url>
+    <loc>https://ajjayer.ae/blogs/how-to-choose-fit-out-contractor-dubai</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/blogs/how-to-choose-fit-out-contractor-dubai.webp</image:loc>
+      <image:title>How to Choose a Fit-Out Contractor in Dubai</image:title>
+    </image:image>
+  </url>
+
+  <!-- Blog Article 05: Car Parking Shade Solutions UAE -->
+  <url>
+    <loc>https://ajjayer.ae/blogs/car-parking-shade-solutions-uae</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/blogs/car-parking-shade-solutions-uae.webp</image:loc>
+      <image:title>Car Parking Shade Solutions for Commercial and Residential Developments</image:title>
+    </image:image>
+  </url>
+
+  <!-- Blog Article 06: Technical Coordination Before Fabrication -->
+  <url>
+    <loc>https://ajjayer.ae/blogs/technical-coordination-before-fabrication</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/blogs/technical-coordination-before-fabrication.webp</image:loc>
+      <image:title>Why Technical Coordination Matters Before Fabrication Begins</image:title>
+    </image:image>
+  </url>
+
+  <!-- Blog Article 07: Successful Steel Fabrication Project Dubai -->
+  <url>
+    <loc>https://ajjayer.ae/blogs/successful-steel-fabrication-project-dubai</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/blogs/successful-steel-fabrication-project-dubai.webp</image:loc>
+      <image:title>What Makes a Successful Steel Fabrication Project in Dubai?</image:title>
+    </image:image>
+  </url>
+
+  <!-- Blog Article 08: Warehouse Design UAE Industrial Projects -->
+  <url>
+    <loc>https://ajjayer.ae/blogs/warehouse-design-uae-industrial-projects</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/blogs/warehouse-design-uae-industrial-projects.webp</image:loc>
+      <image:title>Warehouse Design Considerations for UAE Industrial Projects</image:title>
+    </image:image>
+  </url>
+
+  <!-- Contact & Project Enquiry Page -->
+  <url>
+    <loc>https://ajjayer.ae/contact</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://ajjayer.ae/assets/about-architecture.png</image:loc>
+      <image:title>Contact AJJAYER | Construction &amp; Engineering Enquiries Dubai, UAE</image:title>
+    </image:image>
+  </url>
+</urlset>

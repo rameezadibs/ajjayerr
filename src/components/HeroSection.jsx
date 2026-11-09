@@ -1,15 +1,12 @@
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ArrowDown } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const defaultLinks = { Home: '#home', About: '#who-we-are', Services: '#capabilities', Projects: '#capabilities', Blogs: '#why-ajjayer', Contact: '#contact' };
 
-// Window onto the supplied bitmap: original logo pixels, without redrawing the mark.
-function ReferenceDetail({ viewBox, className, label }) {
-  return <svg viewBox={viewBox} className={className} role={label ? 'img' : undefined} aria-label={label} aria-hidden={label ? undefined : true}><image href="/assets/reference.png" width="1672" height="941" /></svg>;
-}
-
 export default function HeroSection({ links = defaultLinks }) {
   const reduced = useReducedMotion();
+  const { lang, isRTL, t } = useLanguage();
   const reveal = (delay = 0) => ({ initial: reduced ? false : { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] } });
 
   return <MotionConfig reducedMotion="user">
@@ -37,12 +34,12 @@ export default function HeroSection({ links = defaultLinks }) {
         itemProp="image"
       />
       <div className="photo-shade absolute inset-0" aria-hidden="true" />
-      <a href="#hero-heading" className="skip-link">Skip to main content</a>
+      <a href="#hero-heading" className="skip-link">{t('common.skipToContent')}</a>
       <div className="hero-top-spacer" aria-hidden="true" />
 
       <div className="hero-content">
         <motion.p className="eyebrow" {...reveal(0.12)} aria-label="Core disciplines: Construction, Engineering, and Fabrication in UAE">
-          Construction <span>/</span> Engineering <span>/</span> Fabrication
+          {t('hero.eyebrow')}
         </motion.p>
 
         <motion.div
@@ -54,40 +51,48 @@ export default function HeroSection({ links = defaultLinks }) {
         />
 
         <h1 id="hero-heading" tabIndex={-1}>
-          <motion.span {...reveal(0.38)}>Built from</motion.span>
-          <motion.span {...reveal(0.48)}>the <em>detail</em> up.</motion.span>
+          {isRTL ? (
+            <>
+              <motion.span {...reveal(0.38)}>نبني المعالم الهندسية</motion.span>
+              <motion.span {...reveal(0.48)}>من <em>أدق التفاصيل</em>.</motion.span>
+            </>
+          ) : (
+            <>
+              <motion.span {...reveal(0.38)}>Built from</motion.span>
+              <motion.span {...reveal(0.48)}>the <em>detail</em> up.</motion.span>
+            </>
+          )}
         </h1>
 
         <motion.p className="description" {...reveal(0.58)} itemProp="disambiguatingDescription">
-          Delivering leading construction, structural engineering, and industrial fabrication solutions across Dubai and the UAE with an uncompromised commitment to quality, precision, safety, and long-term architectural value.
+          {t('hero.description')}
         </motion.p>
 
         {/* Both CTAs now share identical primary copper button styling */}
         <motion.div className="hero-actions flex" {...reveal(0.68)} role="group" aria-label="Primary Call to Actions">
-          <motion.button
-            type="button"
-            className="button primary-button cursor-default"
+          <motion.a
+            href="#capabilities"
+            className="button primary-button cursor-pointer inline-flex items-center"
             aria-label="Explore our construction, engineering and fabrication work in the UAE"
             whileHover={{ y: -2, backgroundColor: '#dca77b' }}
             whileTap={{ y: 0 }}
           >
-            <span>Explore our work</span>
+            <span>{t('hero.exploreBtn')}</span>
             <ArrowRight size={17} aria-hidden="true" />
-          </motion.button>
+          </motion.a>
           
-          <motion.button
-            type="button"
-            className="button primary-button cursor-default"
+          <motion.a
+            href="#contact"
+            className="button primary-button cursor-pointer inline-flex items-center"
             aria-label="Discuss a construction or engineering project with AJJAYER"
             whileHover={{ y: -2, backgroundColor: '#dca77b' }}
             whileTap={{ y: 0 }}
           >
-            <span>Discuss a project</span>
+            <span>{t('hero.discussBtn')}</span>
             <ArrowRight size={17} aria-hidden="true" />
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
-
 
       <a
         className="scroll-cue"
@@ -101,7 +106,7 @@ export default function HeroSection({ links = defaultLinks }) {
         >
           <ArrowDown size={46} strokeWidth={1} />
         </motion.span>
-        <span>Scroll</span>
+        <span>{t('hero.scroll')}</span>
       </a>
 
       <motion.div
@@ -111,24 +116,20 @@ export default function HeroSection({ links = defaultLinks }) {
         aria-label="Structural engineering highlights"
         {...reveal(0.9)}
       >
-        <ReferenceDetail
-          viewBox="635 813 280 128"
+        <img
+          src="/home/hero1.png"
+          alt="AJJAYER structural steel framework and precision fabrication"
           className="structure-image"
-          label="AJJAYER structural steel framework and precision fabrication"
+          loading="lazy"
         />
         <div className="strip-cell structure-caption">
-          Structures<br />that last<span aria-hidden="true" />
-        </div>
-        <ReferenceDetail
-          viewBox="1043 821 190 120"
-          className="blueprint-image"
-          label="Architectural technical blueprint and engineering elevation drawing"
-        />
-        <div className="strip-cell">
-          Precision<br />in every detail<span aria-hidden="true" />
+          {isRTL ? <>منشآت<br />تدوم طويلاً</> : <>Structures<br />that last</>}<span aria-hidden="true" />
         </div>
         <div className="strip-cell">
-          A stronger<br />UAE together<span aria-hidden="true" />
+          {isRTL ? <>دقة متناهية<br />في كل تفصيل</> : <>Precision<br />in every detail</>}<span aria-hidden="true" />
+        </div>
+        <div className="strip-cell">
+          {isRTL ? <>نبني إمارات<br />أقوى معاً</> : <>A stronger<br />UAE together</>}<span aria-hidden="true" />
         </div>
       </motion.div>
     </section>

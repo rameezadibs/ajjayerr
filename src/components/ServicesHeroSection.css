@@ -1,0 +1,180 @@
+.services-hero {
+  min-height: max(100svh, 53.56vw);
+  background: linear-gradient(125deg, #ffffff70, transparent 45%), #F7F4EE;
+  color: #292929;
+  font-family: var(--font-body);
+}
+.services-editorial { width: 29%; margin-left: 4.2%; padding-top: max(150px, 10.5vw); padding-bottom: 210px; }
+.services-eyebrow { margin: 0 0 20px; color: #9B6038; font-size: clamp(10px,.87vw,17px); letter-spacing: .62em; line-height: 1.7; white-space: nowrap; }
+.services-heading { margin: 0; font-family: var(--font-heading); font-size: clamp(80px,6.65vw,145px); font-weight: 400; line-height: .9; letter-spacing: -.055em; }
+.services-heading > span { display: block; }
+.services-heading > span + span { margin-top: 6px; color: #9B6038; }
+.services-rule { width: 56px; height: 4px; margin: 28px 0 24px; background: #a96837; }
+.services-description { max-width: 480px; margin: 0; font-size: clamp(14px,1.1vw,21px); line-height: 1.45; letter-spacing: -.025em; color: #555; }
+.services-cta { min-height: 60px; margin-top: 28px; padding: 16px 29px; gap: 30px; background: #8B542F; color: #fff; font-size: clamp(11px,.88vw,16px); letter-spacing: .07em; transition: background .25s; }
+.services-cta:hover { background: #714322; }
+.services-cta:focus-visible { outline: 2px solid #8B542F; outline-offset: 5px; }
+.services-cta svg { flex-shrink: 0; transition: transform .25s; }
+.services-cta:hover svg { transform: translateX(4px); }
+.services-drafting { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
+.services-purpose { position: absolute; left: 3.2%; bottom: 8%; margin: 0; padding-left: 22px; border-left: 1px solid #9B6038; color: #555; font-size: clamp(10px,.75vw,14px); letter-spacing: .32em; line-height: 1.8; }
+/* Coordinates share the reference's 1714 x 918 architectural drawing plane. */
+.services-visual { position: absolute; inset: 0; z-index: 0; clip-path: polygon(43.6% 0,100% 0,100% 100%,25.8% 100%); }
+.services-photo { position: absolute; overflow: hidden; }
+.services-photo img { display: block; width: 100%; height: 100%; object-fit: fill; }
+.services-photo--sails { left: 35.5%; top: 0; width: 37.2%; height: 47.1%; clip-path: polygon(21.8% 0,100% 0,75.8% 88.2%,0 100%); }
+.services-photo--pavilion { left: 63.2%; top: 0; width: 36.8%; height: 43.4%; clip-path: polygon(25.7% 0,100% 0,100% 100%,0 100%); }
+.services-photo--warehouse { left: 30.5%; top: 41.5%; width: 33.2%; height: 33.4%; clip-path: polygon(15% 16.6%,100% 0,77.2% 100%,0 99%); }
+.services-photo--boardroom { left: 56.1%; top: 43.4%; width: 43.9%; height: 38.1%; clip-path: polygon(16.3% 0,100% 0,100% 100%,0 82.7%); }
+.services-photo--pergola { left: 25.8%; top: 74.5%; width: 31.6%; height: 25.5%; clip-path: polygon(15% 0,100% 2.6%,85.4% 100%,0 100%); }
+.services-photo--canopies { left: 52.7%; top: 75.1%; width: 47.3%; height: 24.9%; clip-path: polygon(10% 0,100% 25.5%,100% 100%,0 100%); }
+.services-dividers { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .services-editorial { width: 33%; padding-top: 180px; }
+  .services-heading { font-size: 7.3vw; }
+  .services-eyebrow { letter-spacing: .3em; font-size: 9px; }
+  .services-description { font-size: 14px; }
+  .services-cta { padding: 15px; gap: 12px; font-size: 10px; }
+  .services-visual { left: 7%; }
+}
+
+@media (max-width: 767px) {
+  .services-hero { min-height: 100svh; display: flex; flex-direction: column; }
+  .services-editorial { width: auto; margin: 0; padding: 140px 7% 34px; }
+  .services-eyebrow { font-size: 10px; letter-spacing: .35em; margin-bottom: 22px; }
+  .services-heading { font-size: clamp(66px,16vw,112px); }
+  .services-rule { margin: 24px 0 20px; width: 44px; height: 3px; }
+  .services-description { font-size: 14px; line-height: 1.65; max-width: 480px; }
+  .services-cta { min-height: 52px; margin-top: 24px; padding: 14px 20px; font-size: 11px; gap: 25px; }
+  .services-purpose { position: relative; left: auto; bottom: auto; order: 1; margin: 0 7% 30px; font-size: 10px; }
+  .services-visual { position: relative; inset: auto; order: 2; width: 135%; margin-left: -35%; height: 78vw; min-height: 270px; clip-path: polygon(29% 0,100% 0,100% 100%,25.8% 100%); }
+  .services-photo--sails { clip-path: polygon(0 0,100% 0,75.8% 88.2%,0 100%); }
+  .services-drafting { height: 600px; width: 200%; opacity: .5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-hero *, .services-hero *::before { transition: none !important; }
+  .services-cta:hover svg { transform: none; }
+}
+
+/* ==========================================================================
+   SERVICES HERO SECTION RTL ADJUSTMENTS
+   ========================================================================== */
+[dir="rtl"] .services-hero {
+  background: linear-gradient(235deg, #ffffff70, transparent 45%), #F7F4EE;
+}
+
+[dir="rtl"] .services-editorial {
+  margin-left: 0 !important;
+  margin-right: 4.2% !important;
+  text-align: right;
+  width: 34% !important;
+}
+
+[dir="rtl"] .services-eyebrow {
+  letter-spacing: 0.12em !important;
+  margin-bottom: 18px;
+}
+
+[dir="rtl"] .services-heading {
+  font-size: clamp(42px, 4.4vw, 84px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  margin: 0;
+}
+
+[dir="rtl"] .services-heading > span {
+  display: block;
+}
+
+[dir="rtl"] .services-heading > span + span {
+  margin-top: 6px;
+  color: #9B6038;
+}
+
+[dir="rtl"] .services-rule {
+  margin: 24px 0 20px auto !important;
+}
+
+[dir="rtl"] .services-description {
+  margin-left: 0;
+  margin-right: 0;
+  line-height: 1.6;
+}
+
+[dir="rtl"] .services-cta {
+  padding: 16px 26px;
+}
+
+[dir="rtl"] .services-cta svg {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .services-cta:hover svg {
+  transform: scaleX(-1) translateX(4px);
+}
+
+/* Mirror the visual collage to the LEFT side so it never clashes with Arabic text */
+[dir="rtl"] .services-visual {
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+/* Un-mirror the photos inside so the images remain correctly oriented */
+[dir="rtl"] .services-photo img {
+  transform: scaleX(-1);
+}
+
+/* Mirror the architectural drafting lines */
+[dir="rtl"] .services-drafting {
+  transform: scaleX(-1);
+}
+
+/* Reposition purpose label on the right side */
+[dir="rtl"] .services-purpose {
+  left: auto !important;
+  right: 4.2% !important;
+  padding-left: 0 !important;
+  padding-right: 22px !important;
+  border-left: none !important;
+  border-right: 1px solid #9B6038 !important;
+  letter-spacing: 0.12em !important;
+  text-align: right;
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  [dir="rtl"] .services-editorial {
+    width: 38% !important;
+    margin-right: 4% !important;
+    margin-left: 0 !important;
+  }
+  [dir="rtl"] .services-heading {
+    font-size: 6.5vw !important;
+  }
+  [dir="rtl"] .services-visual {
+    right: 7% !important;
+    left: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  [dir="rtl"] .services-editorial {
+    margin: 0 !important;
+    padding: 140px 7% 34px !important;
+  }
+  [dir="rtl"] .services-purpose {
+    margin: 0 7% 30px !important;
+    left: auto !important;
+    right: auto !important;
+  }
+  [dir="rtl"] .services-visual {
+    margin-left: 0 !important;
+    margin-right: -35% !important;
+    transform: none !important;
+  }
+  [dir="rtl"] .services-photo img {
+    transform: none !important;
+  }
+}

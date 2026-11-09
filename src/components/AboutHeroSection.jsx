@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './AboutHeroSection.css';
 
 export const aboutStatistics = [
@@ -13,6 +14,10 @@ export const aboutStatistics = [
 /** Standalone About hero. Pass storyHref or onStoryClick when adding a story section. */
 export default function AboutHeroSection({ storyHref = '/#who-we-are', onStoryClick }) {
   const reducedMotion = useReducedMotion();
+  const { t, isRTL } = useLanguage();
+
+  const stats = t('about.stats') || aboutStatistics;
+
   const reveal = (delay = 0) => ({
     initial: reducedMotion ? false : { opacity: 0, y: 14 },
     animate: { opacity: 1, y: 0 },
@@ -34,24 +39,41 @@ export default function AboutHeroSection({ storyHref = '/#who-we-are', onStoryCl
       </svg>
 
       <div className="about-editorial relative z-10">
-        <motion.p className="about-section-label flex items-center" {...reveal()}><span>01</span><span className="about-label-rule" aria-hidden="true" />ABOUT AJJAYER</motion.p>
+        <motion.p className="about-section-label flex items-center" {...reveal()}>
+          <span>01</span>
+          <span className="about-label-rule" aria-hidden="true" />
+          {t('about.label')}
+        </motion.p>
         <h1 id="about-heading" className="about-headline" itemProp="headline">
-          <motion.span {...reveal(0.08)}>A</motion.span>
-          <motion.span {...reveal(0.16)}>STRONGER</motion.span>
-          <motion.span className="about-bronze" {...reveal(0.24)}>TOMORROW</motion.span>
+          <motion.span {...reveal(0.08)}>{t('about.h1Line1')}</motion.span>
+          <motion.span {...reveal(0.16)}>{t('about.h1Line2')}</motion.span>
+          <motion.span className="about-bronze" {...reveal(0.24)}>{t('about.h1Line3')}</motion.span>
         </h1>
-        <motion.p className="about-tagline" {...reveal(0.32)}>BUILT TOGETHER.</motion.p>
+        <motion.p className="about-tagline" {...reveal(0.32)}>{t('about.tagline')}</motion.p>
         <motion.div className="about-intro" {...reveal(0.4)}>
           <span className="about-accent" aria-hidden="true" />
-          <p itemProp="description">At AJJAYER, we combine engineering expertise, disciplined execution and a forward-thinking approach to create lasting value for the UAE and beyond.</p>
+          <p itemProp="description">{t('about.intro')}</p>
         </motion.div>
-        <motion.a className="about-story inline-flex items-center justify-between" href={storyHref} onClick={onStoryClick} whileHover={{ y: -2, backgroundColor: '#dca77b' }} whileTap={{ y: 0 }} {...reveal(0.48)}><span>OUR STORY</span><ArrowRight size={17} aria-hidden="true" /></motion.a>
+        <motion.a
+          className="about-story inline-flex items-center justify-between"
+          href={storyHref}
+          onClick={onStoryClick}
+          whileHover={{ y: -2, backgroundColor: '#dca77b' }}
+          whileTap={{ y: 0 }}
+          {...reveal(0.48)}
+        >
+          <span>{t('about.storyBtn')}</span>
+          <ArrowRight size={17} aria-hidden="true" />
+        </motion.a>
       </div>
 
       <motion.dl className="about-stats" aria-label="Key Organizational Metrics and Engineering Heritage" {...reveal(0.72)}>
-        {aboutStatistics.map(({ value, lines }) => <div className="about-stat" key={value}>
-          <dt>{lines[0]}<br />{lines[1]}</dt><dd className={value.length > 4 ? 'about-stat-long' : ''}>{value}</dd>
-        </div>)}
+        {stats.map(({ value, lines }, idx) => (
+          <div className="about-stat" key={idx}>
+            <dt>{lines[0]}<br />{lines[1]}</dt>
+            <dd className={value.length > 4 ? 'about-stat-long' : ''} dir="ltr">{value}</dd>
+          </div>
+        ))}
       </motion.dl>
     </section>
   );

@@ -1,13 +1,14 @@
 import React, { useId, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { MessageSquare, DraftingCompass, Layers, HardHat, Flag } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './HowWeWorkSection.css';
 
 export const processSteps = [
   { id: '01', title: 'Understand', description: 'We listen, align on goals and define project requirements.', alt: 'Architectural plans and a technical pen on a drafting desk.', icon: MessageSquare, image: '/assets/approach-process.png' },
-  { id: '02', title: 'Engineer', description: 'We develop practical, efficient and buildable solutions.', alt: 'Engineered structural steel frame under construction.', icon: DraftingCompass, image: '/assets/approach-process.png' },
-  { id: '03', title: 'Coordinate', description: 'We bring people, plans and resources together for seamless execution.', alt: 'Site engineer in a hard hat and high-visibility vest observing construction.', icon: Layers, image: '/assets/approach-process.png' },
-  { id: '04', title: 'Execute', description: 'We build with precision, safety and strict quality control.', alt: 'Crane and lifting chains positioning a structural steel beam.', icon: HardHat, image: '/assets/approach-process.png' },
+  { id: '02', title: 'Engineer', description: 'We develop practical, efficient and buildable solutions.', alt: 'Engineered structural steel frame under construction.', icon: DraftingCompass, image: '/about/approach/engineer.png' },
+  { id: '03', title: 'Coordinate', description: 'We bring people, plans and resources together for seamless execution.', alt: 'Site engineer in a hard hat and high-visibility vest observing construction.', icon: Layers, image: '/about/approach/coordinate.png' },
+  { id: '04', title: 'Execute', description: 'We build with precision, safety and strict quality control.', alt: 'Crane and lifting chains positioning a structural steel beam.', icon: HardHat, image: '/about/approach/execute.png' },
   { id: '05', title: 'Deliver', description: 'We hand over reliable, high-quality outcomes that create lasting value.', alt: 'Completed architectural production delivered by AJJAYER.', icon: Flag, image: '/about/production.png' },
 ];
 
@@ -20,28 +21,65 @@ export default function HowWeWorkSection() {
   const [focused, setFocused] = useState(null);
   const active = focused ?? hovered;
   const uid = useId().replace(/:/g, '');
-  const reveal = (delay = 0) => ({ initial: reduced ? false : { opacity: 0, y: 12 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: .15 }, transition: { duration: .65, delay: reduced ? 0 : delay, ease: [.22, 1, .36, 1] } });
-  return <section id="our-approach" className="work-section relative isolate overflow-hidden" aria-labelledby={`${uid}-heading`} itemScope itemType="https://schema.org/HowTo">
-    <svg className="work-architecture pointer-events-none" viewBox="0 0 2000 800" preserveAspectRatio="none" fill="none" aria-hidden="true">
-      <defs><linearGradient id={`${uid}-edge`}><stop stopColor="#594536"/><stop offset=".45" stopColor="#c18a56"/><stop offset="1" stopColor="#f6e7d5"/></linearGradient><linearGradient id={`${uid}-stone`} x2=".7" y2="1"><stop stopColor="#eee5da"/><stop offset="1" stopColor="#9a8877"/></linearGradient></defs>
-      <path d="M720 0H1080C780 95 537 260 470 465C515 242 617 97 720 0Z" fill={`url(#${uid}-stone)`}/>
-      <path d="M959 0H1080C780 95 537 260 470 465C516 277 711 98 959 0Z" fill={`url(#${uid}-edge)`}/>
-      <path d="M1080 0C780 95 537 260 470 465C380 733 667 730 970 800" stroke="#a47756" opacity=".35"/>
-      <path d="M0 574C150 663 318 639 705 800H0Z" fill={`url(#${uid}-stone)`}/>
-      <path d="M0 574C135 658 218 717 435 800H310Z" fill="#f9ecdb"/>
-      <path d="M0 574C150 663 318 639 705 800" stroke="#ca9468"/>
-      <g stroke="#a47756" strokeWidth=".7" opacity=".13"><path d="M57 600V800 M0 744H360 M1940 120V600 M1870 700H2000"/></g>
-    </svg>
-    <div className="work-layout">
-      <div className="work-intro relative z-10">
-        <motion.p className="work-eyebrow flex items-center" {...reveal()}><span aria-hidden="true"/>OUR APPROACH</motion.p>
-        <motion.h2 id={`${uid}-heading`} itemProp="name" {...reveal(.08)}>How We<span>Work</span></motion.h2>
-        <motion.div {...reveal(.16)}><span className="work-accent" aria-hidden="true"/><p className="work-intro-copy" itemProp="description">A structured, collaborative and execution-focused process that turns ideas into high-quality, real-world outcomes.</p></motion.div>
-      </div>
-      <div className="work-scroll" role="region" aria-label="Our five-stage process">
-        <div className="work-process">
-          <ol className="work-stages" itemScope itemType="https://schema.org/ItemList">
-            {processSteps.map(({ id, title, description, image, alt, icon: Icon }, index) => {
+  const { t, isRTL } = useLanguage();
+
+  const localizedStages = (t('about.stages') || processSteps).map((stage, idx) => ({
+    ...processSteps[idx],
+    ...stage,
+  }));
+
+  const reveal = (delay = 0) => ({
+    initial: reduced ? false : { opacity: 0, y: 12 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.15 },
+    transition: { duration: 0.65, delay: reduced ? 0 : delay, ease: [0.22, 1, 0.36, 1] },
+  });
+
+  return (
+    <section id="our-approach" className="work-section relative isolate overflow-hidden" aria-labelledby={`${uid}-heading`} itemScope itemType="https://schema.org/HowTo">
+      <svg className="work-architecture pointer-events-none" viewBox="0 0 2000 800" preserveAspectRatio="none" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id={`${uid}-edge`}>
+            <stop stopColor="#594536" />
+            <stop offset=".45" stopColor="#c18a56" />
+            <stop offset="1" stopColor="#f6e7d5" />
+          </linearGradient>
+          <linearGradient id={`${uid}-stone`} x2=".7" y2="1">
+            <stop stopColor="#eee5da" />
+            <stop offset="1" stopColor="#9a8877" />
+          </linearGradient>
+        </defs>
+        <path d="M720 0H1080C780 95 537 260 470 465C515 242 617 97 720 0Z" fill={`url(#${uid}-stone)`} />
+        <path d="M959 0H1080C780 95 537 260 470 465C516 277 711 98 959 0Z" fill={`url(#${uid}-edge)`} />
+        <path d="M1080 0C780 95 537 260 470 465C380 733 667 730 970 800" stroke="#a47756" opacity=".35" />
+        <path d="M0 574C150 663 318 639 705 800H0Z" fill={`url(#${uid}-stone)`} />
+        <path d="M0 574C135 658 218 717 435 800H310Z" fill="#f9ecdb" />
+        <path d="M0 574C150 663 318 639 705 800" stroke="#ca9468" />
+        <g stroke="#a47756" strokeWidth=".7" opacity=".13">
+          <path d="M57 600V800 M0 744H360 M1940 120V600 M1870 700H2000" />
+        </g>
+      </svg>
+      <div className="work-layout">
+        <div className="work-intro relative z-10">
+          <motion.p className="work-eyebrow flex items-center" {...reveal()}>
+            <span aria-hidden="true" />
+            {t('about.howEyebrow')}
+          </motion.p>
+          <motion.h2 id={`${uid}-heading`} itemProp="name" {...reveal(0.08)}>
+            {t('about.howHeading1')}
+            <span>{t('about.howHeading2')}</span>
+          </motion.h2>
+          <motion.div {...reveal(0.16)}>
+            <span className="work-accent" aria-hidden="true" />
+            <p className="work-intro-copy" itemProp="description">
+              {t('about.howIntro')}
+            </p>
+          </motion.div>
+        </div>
+        <div className="work-scroll" role="region" aria-label="Our five-stage process">
+          <div className="work-process">
+            <ol className="work-stages" itemScope itemType="https://schema.org/ItemList">
+              {localizedStages.map(({ id, title, description, image, alt, icon: Icon }, index) => {
               const isPanorama = image === '/assets/approach-process.png';
               return (
                 <motion.li key={id} className={`work-stage ${active === index ? 'is-active' : ''}`} style={{ '--stage': index }} tabIndex={0} aria-labelledby={`${uid}-${id}`} onMouseEnter={() => setHovered(index)} onMouseLeave={() => setHovered(null)} onFocus={() => setFocused(index)} onBlur={() => setFocused(null)} itemScope itemProp="itemListElement" itemType="https://schema.org/HowToStep" {...reveal(.1 + index * .09)}>
@@ -80,5 +118,6 @@ export default function HowWeWorkSection() {
         </div>
       </div>
     </div>
-  </section>;
+  </section>
+  );
 }

@@ -1,10 +1,11 @@
 import React, { useId } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Handshake, MapPin, Building2, Users } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './TestimonialsSection.css';
 
 // ============================================================================
-// 1. EDITABLE DATA ARRAYS (Easy to replace with verified client testimonials)
+// 1. DATA ARRAYS (English & Arabic)
 // ============================================================================
 
 export const testimonials = [
@@ -40,6 +41,39 @@ export const testimonials = [
   },
 ];
 
+export const testimonialsAr = [
+  {
+    id: 'testimonial-1',
+    category: 'المشاريع التجارية والمتعددة الاستخدامات',
+    quote:
+      'نفذت شركة الجيّر أعمالها باحترافية استثنائية وعناية فائقة بأدق التفاصيل الهندسية. استوعب فريقهم رؤيتنا بالكامل وحافظ على تواصل شفاف ومستمر مع تنفيذ المشروع وفق أعلى المعايير المعتمدة. إنهم حقاً شريك موثوق نتطلع للعمل معه مجدداً.',
+    name: 'محمد علي',
+    role: 'مدير المشاريع',
+    company: 'تطوير النور العقارية',
+    initials: 'م.ع',
+  },
+  {
+    id: 'testimonial-2',
+    category: 'القطاع الصناعي والتصنيع الفولاذي',
+    quote:
+      'المستوى الهندسي وجودة التصنيع الفولاذي لدى شركة الجيّر يفوق التوقعات. يلتزمون دائماً بالمواعيد والمواصفات حتى في المشاريع الأكثر تعقيداً. كفاءتهم الفنية تجعلهم شريكاً استراتيجياً طويل الأمد.',
+    name: 'سلمان خان',
+    role: 'مدير العمليات',
+    company: 'حلول الخليج الصناعية',
+    initials: 'س.خ',
+  },
+  {
+    id: 'testimonial-3',
+    category: 'البنية التحتية والأعمال المدنية',
+    quote:
+      'التزام الجيّر الصارم بمعايير الجودة والسلامة ومواعيد التسليم يضعهم في طليعة المقاولين. يقدم فريقهم حلولاً هندسية عملية ورؤية متعمقة جعلت سير المشروع في غاية السلاسة والكفاءة.',
+    name: 'فاطمة الزعابي',
+    role: 'رئيس المشتريات والتعاقدات',
+    company: 'مجموعة الإمارات للبنية التحتية',
+    initials: 'ف.ز',
+  },
+];
+
 // Editable metric figures
 export const trustMetrics = [
   {
@@ -69,6 +103,37 @@ export const trustMetrics = [
     value: 'LONG-TERM',
     label: 'PARTNERSHIPS',
     supporting: 'Built on performance and mutual growth.',
+  },
+];
+
+export const trustMetricsAr = [
+  {
+    id: 'metric-repeat',
+    icon: Handshake,
+    value: '98%',
+    label: 'عملاء متكررون',
+    supporting: 'شاهد حيّ على الثقة الهندسية الراسخة.',
+  },
+  {
+    id: 'metric-uae',
+    icon: MapPin,
+    value: 'كافة الإمارات',
+    label: 'نطاق التسليم',
+    supporting: 'تنفيذ مشاريع استراتيجية في كافة إمارات الدولة.',
+  },
+  {
+    id: 'metric-disciplines',
+    icon: Building2,
+    value: 'ثقة معتمدة في',
+    label: 'المقاولات والهندسة والتصنيع',
+    supporting: 'قدرات متكاملة وحلول شاملة تحت سقف واحد.',
+  },
+  {
+    id: 'metric-partnerships',
+    icon: Users,
+    value: 'شراكات مستدامة',
+    label: 'طويلة الأمد',
+    supporting: 'مبنية على الأداء المثبت والنمو المتبادل.',
   },
 ];
 
@@ -135,11 +200,15 @@ function ArchitecturalDraftingCanvas() {
 // ============================================================================
 
 export default function TestimonialsSection({
-  data = testimonials,
-  metrics = trustMetrics,
+  data,
+  metrics,
 }) {
   const sectionId = useId();
   const reduced = useReducedMotion();
+  const { isRTL } = useLanguage();
+
+  const activeData = data || (isRTL ? testimonialsAr : testimonials);
+  const activeMetrics = metrics || (isRTL ? trustMetricsAr : trustMetrics);
 
   // Restrained scroll-triggered animation helper
   const reveal = (delay = 0, yOffset = 14) => ({
@@ -172,7 +241,7 @@ export default function TestimonialsSection({
             <span className="testimonials-kicker-number">05</span>
             <span className="testimonials-kicker-rule" aria-hidden="true" />
             <h2 id={`${sectionId}-kicker`} className="testimonials-kicker-title">
-              TESTIMONIALS
+              {isRTL ? 'شهادات العملاء والشركاء' : 'TESTIMONIALS'}
             </h2>
           </motion.div>
 
@@ -182,16 +251,30 @@ export default function TestimonialsSection({
             {...reveal(0.08)}
           >
             <p className="testimonials-aside-tracking">
-              REAL PARTNERSHIPS. LASTING IMPACT.
+              {isRTL ? 'شراكات حقيقية. أثر هندسي مستدام.' : 'REAL PARTNERSHIPS. LASTING IMPACT.'}
             </p>
             <p className="testimonials-aside-pillars">
-              <span>PEOPLE</span>
-              <span>/</span>
-              <span>PROJECTS</span>
-              <span>/</span>
-              <span>PROGRESS</span>
-              <span>/</span>
-              <span>TOGETHER</span>
+              {isRTL ? (
+                <>
+                  <span>الكوادر</span>
+                  <span>/</span>
+                  <span>المشاريع</span>
+                  <span>/</span>
+                  <span>الإنجاز</span>
+                  <span>/</span>
+                  <span>معاً</span>
+                </>
+              ) : (
+                <>
+                  <span>PEOPLE</span>
+                  <span>/</span>
+                  <span>PROJECTS</span>
+                  <span>/</span>
+                  <span>PROGRESS</span>
+                  <span>/</span>
+                  <span>TOGETHER</span>
+                </>
+              )}
             </p>
             <span className="testimonials-aside-rule" aria-hidden="true" />
           </motion.aside>
@@ -202,20 +285,32 @@ export default function TestimonialsSection({
            ================================================================== */}
         <div className="testimonials-headline-wrap">
           <h2 id={`${sectionId}-heading`} className="testimonials-headline">
-            <motion.span {...reveal(0.12)}>
-              TRUSTED BY CLIENTS
-            </motion.span>
-            <motion.span {...reveal(0.2)}>
-              WHO BUILD WITH{' '}
-              <em className="bronze-highlight">CONFIDENCE.</em>
-            </motion.span>
+            {isRTL ? (
+              <>
+                <motion.span {...reveal(0.12)}>
+                  خيار العملاء الذين يبنون
+                </motion.span>
+                <motion.span {...reveal(0.2)}>
+                  <em className="bronze-highlight">بثقة وريادة هندسية.</em>
+                </motion.span>
+              </>
+            ) : (
+              <>
+                <motion.span {...reveal(0.12)}>
+                  TRUSTED BY CLIENTS
+                </motion.span>
+                <motion.span {...reveal(0.2)}>
+                  WHO BUILD WITH{' '}
+                  <em className="bronze-highlight">CONFIDENCE.</em>
+                </motion.span>
+              </>
+            )}
           </h2>
 
           <motion.p className="testimonials-intro-copy" {...reveal(0.28)}>
-            AJJAYER Constructions Contracting LLC is trusted across the UAE for
-            construction, engineering and fabrication excellence — delivering
-            projects with integrity, precision and a long-term commitment to our
-            clients’ success.
+            {isRTL
+              ? 'تحظى شركة الجيّر لمقاولات البناء ذ.م.م بثقة واسعة في كافة إمارات الدولة للتميز في المقاولات العامة والهندسة الإنشائية والتصنيع الدقيق — منفذةً مشاريع قائمة على النزاهة والدقة والالتزام طويل الأمد بنجاح شركائنا.'
+              : 'AJJAYER Constructions Contracting LLC is trusted across the UAE for construction, engineering and fabrication excellence — delivering projects with integrity, precision and a long-term commitment to our clients’ success.'}
           </motion.p>
         </div>
 
@@ -227,7 +322,7 @@ export default function TestimonialsSection({
           role="region"
           aria-label="Client testimonials"
         >
-          {data.map((item, index) => (
+          {activeData.map((item, index) => (
             <motion.article
               key={item.id}
               className="testimonial-panel"
@@ -299,12 +394,12 @@ export default function TestimonialsSection({
           <span className="trust-strip-crosshair crosshair-bl" aria-hidden="true" />
           <span className="trust-strip-crosshair crosshair-br" aria-hidden="true" />
 
-          {metrics.map(({ id, icon: Icon, value, label, supporting }) => (
+          {activeMetrics.map(({ id, icon: Icon, value, label, supporting }) => (
             <div key={id} className="trust-metric-cell">
               <div className="trust-metric-icon-wrap" aria-hidden="true">
                 <Icon size={24} strokeWidth={1.2} />
               </div>
-              <p className="trust-metric-value">{value}</p>
+              <p className="trust-metric-value" dir="ltr">{value}</p>
               <h4 className="trust-metric-label">{label}</h4>
               <p className="trust-metric-supporting">{supporting}</p>
             </div>

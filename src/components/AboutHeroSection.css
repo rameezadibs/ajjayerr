@@ -45,3 +45,133 @@
  .about-stats:before{display:none}.about-stat{padding:0 0 0 24px;gap:10px}.about-stat:nth-child(odd){padding-left:0;border-left:0}.about-stat dd{font-size:39px}.about-stat dt{font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){.about-hero *{scroll-behavior:auto;transition:none!important}}
+
+/* ==========================================================================
+   ABOUT HERO SECTION RTL ADJUSTMENTS
+   ========================================================================== */
+[dir="rtl"] .about-visual img {
+  transform: scaleX(-1);
+  object-position: 35% center;
+}
+
+[dir="rtl"] .about-wash {
+  background: linear-gradient(270deg, #f3efe8 0%, #f3efe8f8 26%, #f3efe8d9 42%, transparent 62%);
+}
+
+[dir="rtl"] .about-drafting {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .about-editorial {
+  margin-left: 0 !important;
+  margin-right: 7% !important;
+  text-align: right;
+  width: 40%;
+}
+
+[dir="rtl"] .about-section-label {
+  justify-content: flex-start;
+}
+
+[dir="rtl"] .about-headline {
+  font-size: clamp(48px, 4.4vw, 105px);
+  line-height: 1.05;
+}
+
+[dir="rtl"] .about-headline > span {
+  margin-left: auto;
+  margin-right: 0;
+  width: auto;
+}
+
+[dir="rtl"] .about-tagline {
+  letter-spacing: 0.12em;
+}
+
+[dir="rtl"] .about-intro {
+  max-width: 32vw;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+[dir="rtl"] .about-accent {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+[dir="rtl"] .about-story svg {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .about-story:hover svg {
+  transform: scaleX(-1) translateX(4px);
+}
+
+[dir="rtl"] .about-stats {
+  left: auto !important;
+  right: 7% !important;
+}
+
+[dir="rtl"] .about-stat {
+  border-left: none !important;
+  border-right: 1px solid #a4775666 !important;
+  padding: 0 1.9vw !important;
+  text-align: right;
+}
+
+[dir="rtl"] .about-stat:first-child {
+  padding-right: 0 !important;
+  border-right: 0 !important;
+}
+
+[dir="rtl"] .about-stat:last-child {
+  padding-left: 0 !important;
+}
+
+[dir="rtl"] .about-stat dt {
+  letter-spacing: 0.05em;
+}
+
+/* Tablet: 761px - 1100px RTL */
+@media (max-width: 1100px) and (min-width: 761px) {
+  [dir="rtl"] .about-editorial {
+    width: 50% !important;
+    margin-right: 6% !important;
+    margin-left: 0 !important;
+  }
+  [dir="rtl"] .about-stats {
+    width: 57% !important;
+    right: 6% !important;
+    left: auto !important;
+  }
+  [dir="rtl"] .about-visual img {
+    object-position: 32% center !important;
+  }
+  [dir="rtl"] .about-wash {
+    background: linear-gradient(270deg, #f3efe8 0%, #f3efe8f0 36%, transparent 75%) !important;
+  }
+  [dir="rtl"] .about-headline {
+    font-size: 5.6vw !important;
+  }
+}
+
+/* Mobile: max-width 760px RTL */
+@media (max-width: 760px) {
+  [dir="rtl"] .about-editorial {
+    margin: 0 !important;
+  }
+  [dir="rtl"] .about-stats {
+    right: auto !important;
+    left: auto !important;
+  }
+  [dir="rtl"] .about-stat {
+    padding: 0 24px 0 0 !important;
+    border-right: 1px solid #a4775666 !important;
+    border-left: 0 !important;
+  }
+  [dir="rtl"] .about-stat:nth-child(odd) {
+    padding-right: 0 !important;
+    border-right: 0 !important;
+  }
+}
+

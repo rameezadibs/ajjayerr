@@ -1,24 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { ArrowRight, Menu, X, Phone, Mail, MapPin, Clock } from 'lucide-react';
 import Brand from './Brand';
+import ServicesDropdown from './ServicesDropdown';
+import MobileServicesMenu from './MobileServicesMenu';
+import { useLanguage } from '../context/LanguageContext';
 import './Navbar.css';
-
-const navItems = [
-  { id: 'home', label: 'Home', href: '#home' },
-  { id: 'who-we-are', label: 'About', href: '#who-we-are' },
-  { id: 'capabilities', label: 'Services', href: '#capabilities' },
-  { id: 'why-ajjayer', label: 'Why AJJAYER', href: '#why-ajjayer' },
-  { id: 'contact', label: 'Contact', href: '#contact' },
-];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const isAboutPage = typeof window !== 'undefined' && /^\/about\/?$/.test(window.location.pathname);
-  const activeSection = isAboutPage ? 'who-we-are' : 'home';
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { lang, toggleLang, t } = useLanguage();
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('EN');
+
+  // Services Dropdown State & Controlled Hover Delay
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const dropdownCloseTimer = useRef(null);
 
   // Framer Motion scroll progress line
   const { scrollYProgress } = useScroll();
@@ -27,6 +28,13 @@ export default function Navbar() {
     damping: 30,
     restDelta: 0.001,
   });
+
+  // Check if current route is /services or a child route
+  const isServicesActive = location.pathname.startsWith('/services');
+  const isAboutActive = location.pathname.startsWith('/about');
+  const isBlogsActive = location.pathname.startsWith('/blogs');
+  const isContactActive = location.pathname.startsWith('/contact');
+  const isHomeActive = location.pathname === '/' && !location.hash;
 
   // Scroll listener for sticky dock transition
   useEffect(() => {
@@ -39,48 +47,62 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close modals on Escape key
+  // Close modals & dropdown on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setMobileMenuOpen(false);
         setContactModalOpen(false);
+        setServicesDropdownOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Smooth scroll handler & multi-page navigation
-  const handleNavClick = (e, targetId) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
+  // Hover handlers with 140ms controlled close delay
+  const handleServicesMouseEnter = () => {
+    if (dropdownCloseTimer.current) {
+      clearTimeout(dropdownCloseTimer.current);
+      dropdownCloseTimer.current = null;
+    }
+    setServicesDropdownOpen(true);
+  };
 
-    if (targetId === 'who-we-are') {
-      if (isAboutPage) {
+  const handleServicesMouseLeave = () => {
+    if (dropdownCloseTimer.current) clearTimeout(dropdownCloseTimer.current);
+    dropdownCloseTimer.current = setTimeout(() => {
+      setServicesDropdownOpen(false);
+    }, 150); // 150ms controlled delay
+  };
+
+  // Main Nav Items as specified in prompt:
+  // HOME, ABOUT, SERVICES, PROJECTS, BLOGS, CONTACT
+  const handleNavClick = (e, target) => {
+    setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
+
+    if (target === 'home') {
+      if (location.pathname === '/') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        window.location.assign('/about');
+        navigate('/');
       }
-      return;
-    }
-
-    if (isAboutPage) {
-      if (targetId === 'home') {
-        window.location.assign('/');
+    } else if (target === 'about') {
+      navigate('/about');
+    } else if (target === 'services') {
+      navigate('/services');
+    } else if (target === 'projects') {
+      if (location.pathname === '/') {
+        const el = document.getElementById('capabilities');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
       } else {
-        window.location.assign(`/#${targetId}`);
+        navigate('/#capabilities');
       }
-      return;
-    }
-
-    const target = document.getElementById(targetId);
-    if (target) {
-      const yOffset = -80; // Offset for the floating navbar height
-      const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: targetId === 'home' ? 0 : y, behavior: 'smooth' });
-    } else if (targetId === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (target === 'blogs') {
+      navigate('/blogs');
+    } else if (target === 'contact') {
+      navigate('/contact');
     }
   };
 
@@ -97,39 +119,155 @@ export default function Navbar() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Brand Logo */}
-          <a
-            href={isAboutPage ? '/' : '#home'}
+          <Link
+            to="/"
             className="navbar-brand-link"
-            onClick={(e) => handleNavClick(e, 'home')}
+            onClick={(e) => {
+              if (location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
             aria-label="AJJAYER Home"
           >
             <Brand className="navbar-brand-logo" />
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="navbar-links" aria-label="Main Navigation">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <li key={item.id} className="nav-link-item">
-                  <button
-                    type="button"
-                    className={`nav-link-btn ${isActive ? 'is-active' : ''}`}
-                    onClick={(e) => handleNavClick(e, item.id)}
-                    aria-current={isActive ? 'page' : undefined}
-                  >
-                    {isActive && (
-                      <motion.div
-                        className="nav-active-pill"
-                        layoutId="navActiveBackground"
-                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                      />
-                    )}
-                    <span className="nav-link-label">{item.label}</span>
-                  </button>
-                </li>
-              );
-            })}
+            {/* 1. HOME */}
+            <li className="nav-link-item">
+              <Link
+                to="/"
+                className={`nav-link-btn ${isHomeActive ? 'is-active' : ''}`}
+                onClick={(e) => {
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
+                aria-current={isHomeActive ? 'page' : undefined}
+              >
+                {isHomeActive && (
+                  <motion.div
+                    className="nav-active-pill"
+                    layoutId="navActiveBackground"
+                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <span className="nav-link-label">{t('nav.home')}</span>
+              </Link>
+            </li>
+
+            {/* 2. ABOUT */}
+            <li className="nav-link-item">
+              <Link
+                to="/about"
+                className={`nav-link-btn ${isAboutActive ? 'is-active' : ''}`}
+                aria-current={isAboutActive ? 'page' : undefined}
+              >
+                {isAboutActive && (
+                  <motion.div
+                    className="nav-active-pill"
+                    layoutId="navActiveBackground"
+                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <span className="nav-link-label">{t('nav.about')}</span>
+              </Link>
+            </li>
+
+            {/* 3. SERVICES (WITH ARCHITECTURAL DROPDOWN) */}
+            <li
+              className="nav-link-item nav-services-container"
+              onMouseEnter={handleServicesMouseEnter}
+              onMouseLeave={handleServicesMouseLeave}
+            >
+              <Link
+                to="/services"
+                className={`nav-link-btn ${isServicesActive ? 'is-services-active' : ''}`}
+                aria-expanded={servicesDropdownOpen}
+                aria-haspopup="true"
+                aria-current={isServicesActive ? 'page' : undefined}
+                onFocus={handleServicesMouseEnter}
+                onKeyDown={(e) => {
+                  if (e.key === 'ArrowDown' || e.key === 'Enter') {
+                    setServicesDropdownOpen(true);
+                  }
+                }}
+              >
+                <span className="nav-link-label">{t('nav.services')}</span>
+
+                {/* Short bronze underline active indicator when route begins with /services */}
+                {isServicesActive && (
+                  <motion.span
+                    className="nav-services-bronze-underline"
+                    layoutId="servicesActiveUnderline"
+                    transition={{ duration: 0.25 }}
+                    aria-hidden="true"
+                  />
+                )}
+              </Link>
+
+              {/* Architectural Services Dropdown Panel */}
+              <AnimatePresence>
+                {servicesDropdownOpen && (
+                  <ServicesDropdown
+                    isOpen={servicesDropdownOpen}
+                    onClose={() => setServicesDropdownOpen(false)}
+                    onMouseEnter={handleServicesMouseEnter}
+                    onMouseLeave={handleServicesMouseLeave}
+                  />
+                )}
+              </AnimatePresence>
+            </li>
+
+            {/* 4. PROJECTS */}
+            <li className="nav-link-item">
+              <button
+                type="button"
+                className="nav-link-btn"
+                onClick={(e) => handleNavClick(e, 'projects')}
+              >
+                <span className="nav-link-label">{t('nav.projects')}</span>
+              </button>
+            </li>
+
+            {/* 5. BLOGS */}
+            <li className="nav-link-item">
+              <Link
+                to="/blogs"
+                className={`nav-link-btn ${isBlogsActive ? 'is-active' : ''}`}
+                aria-current={isBlogsActive ? 'page' : undefined}
+              >
+                {isBlogsActive && (
+                  <motion.div
+                    className="nav-active-pill"
+                    layoutId="navActiveBackground"
+                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <span className="nav-link-label">{t('nav.blogs')}</span>
+              </Link>
+            </li>
+
+            {/* 6. CONTACT */}
+            <li className="nav-link-item">
+              <Link
+                to="/contact"
+                className={`nav-link-btn ${isContactActive ? 'is-active' : ''}`}
+                aria-current={isContactActive ? 'page' : undefined}
+              >
+                {isContactActive && (
+                  <motion.div
+                    className="nav-active-pill"
+                    layoutId="navActiveBackground"
+                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <span className="nav-link-label">{t('nav.contact')}</span>
+              </Link>
+            </li>
           </nav>
 
           {/* Right Actions: Language Switcher, CTA */}
@@ -138,12 +276,12 @@ export default function Navbar() {
             <button
               type="button"
               className="navbar-lang-toggle"
-              onClick={() => setCurrentLang((prev) => (prev === 'EN' ? 'AR' : 'EN'))}
-              aria-label="Switch Language"
+              onClick={toggleLang}
+              aria-label={t('nav.switchLang')}
             >
-              <span className={currentLang === 'EN' ? 'lang-active' : ''}>EN</span>
+              <span className={lang === 'en' ? 'lang-active' : ''}>EN</span>
               <span style={{ opacity: 0.4 }}>/</span>
-              <span className={currentLang === 'AR' ? 'lang-active' : ''}>AR</span>
+              <span className={lang === 'ar' ? 'lang-active' : ''}>AR</span>
             </button>
 
             {/* Contact CTA */}
@@ -153,7 +291,7 @@ export default function Navbar() {
               onClick={() => setContactModalOpen(true)}
               aria-label="Open contact information"
             >
-              <span>Get in touch</span>
+              <span>{t('common.getInTouch')}</span>
               <ArrowRight size={15} />
             </button>
 
@@ -169,7 +307,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Integrated Dynamic Laser Progress Indicator */}
+          {/* Dynamic Laser Progress Indicator */}
           <motion.div
             className="navbar-scroll-progress"
             style={{ scaleX }}
@@ -179,7 +317,7 @@ export default function Navbar() {
       </header>
 
       {/* ======================================================================
-          CREATIVE MOBILE DRAWER MENU
+          MOBILE DRAWER MENU WITH ACCORDION SERVICES
          ====================================================================== */}
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -192,37 +330,88 @@ export default function Navbar() {
           >
             <div className="mobile-menu-header">
               <Brand className="mobile-menu-brand" />
-              <button
-                type="button"
-                className="mobile-menu-close"
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close menu"
-              >
-                <X size={22} />
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <button
+                  type="button"
+                  className="navbar-lang-toggle"
+                  style={{ display: 'inline-flex' }}
+                  onClick={toggleLang}
+                  aria-label={t('nav.switchLang')}
+                >
+                  <span className={lang === 'en' ? 'lang-active' : ''}>EN</span>
+                  <span style={{ opacity: 0.4 }}>/</span>
+                  <span className={lang === 'ar' ? 'lang-active' : ''}>AR</span>
+                </button>
+                <button
+                  type="button"
+                  className="mobile-menu-close"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label={t('common.close')}
+                >
+                  <X size={22} />
+                </button>
+              </div>
             </div>
 
             <div className="mobile-menu-links">
-              {navItems.map((item, idx) => (
-                <motion.button
-                  key={item.id}
-                  type="button"
-                  className={`mobile-nav-link ${activeSection === item.id ? 'is-active' : ''}`}
-                  onClick={(e) => handleNavClick(e, item.id)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.07 }}
-                >
-                  <span className="mobile-nav-link-label">{item.label}</span>
-                  <ArrowRight size={18} />
-                </motion.button>
-              ))}
+              {/* Home */}
+              <Link
+                to="/"
+                className={`mobile-nav-link ${isHomeActive ? 'is-active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="mobile-nav-link-label">{t('nav.home')}</span>
+                <ArrowRight size={18} />
+              </Link>
+
+              {/* About */}
+              <Link
+                to="/about"
+                className={`mobile-nav-link ${isAboutActive ? 'is-active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="mobile-nav-link-label">{t('nav.about')}</span>
+                <ArrowRight size={18} />
+              </Link>
+
+              {/* SERVICES ACCORDION */}
+              <MobileServicesMenu onItemClick={() => setMobileMenuOpen(false)} />
+
+              {/* Projects */}
+              <button
+                type="button"
+                className="mobile-nav-link"
+                onClick={(e) => handleNavClick(e, 'projects')}
+              >
+                <span className="mobile-nav-link-label">{t('nav.projects')}</span>
+                <ArrowRight size={18} />
+              </button>
+
+              {/* Blogs */}
+              <Link
+                to="/blogs"
+                className={`mobile-nav-link ${isBlogsActive ? 'is-active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="mobile-nav-link-label">{t('nav.blogs')}</span>
+                <ArrowRight size={18} />
+              </Link>
+
+              {/* Contact */}
+              <Link
+                to="/contact"
+                className={`mobile-nav-link ${isContactActive ? 'is-active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="mobile-nav-link-label">{t('nav.contact')}</span>
+                <ArrowRight size={18} />
+              </Link>
             </div>
 
             <div className="mobile-menu-footer">
               <div className="mobile-contact-card">
-                <p>AJJAYER Constructions Contracting LLC</p>
-                <span>Dubai, United Arab Emirates</span>
+                <p>{t('common.companyName')}</p>
+                <span>{t('common.location')}</span>
               </div>
 
               <button
@@ -234,7 +423,7 @@ export default function Navbar() {
                   setContactModalOpen(true);
                 }}
               >
-                <span>Get in touch with our team</span>
+                <span>{t('common.getInTouch')}</span>
                 <ArrowRight size={16} />
               </button>
             </div>
@@ -243,7 +432,7 @@ export default function Navbar() {
       </AnimatePresence>
 
       {/* ======================================================================
-          INTERACTIVE ARCHITECTURAL CONTACT MODAL
+          ARCHITECTURAL CONTACT MODAL
          ====================================================================== */}
       <AnimatePresence>
         {contactModalOpen && (
@@ -264,17 +453,17 @@ export default function Navbar() {
               <div className="contact-modal-header">
                 <div>
                   <h3 className="contact-modal-title">
-                    Start a <em>Conversation</em>
+                    {t('nav.contactModalTitlePre')} <em>{t('nav.contactModalTitleEm')}</em>
                   </h3>
                   <p className="contact-modal-subtitle">
-                    Connect with our Dubai engineering & construction leadership
+                    {t('nav.contactModalSubtitle')}
                   </p>
                 </div>
                 <button
                   type="button"
                   className="contact-modal-close"
                   onClick={() => setContactModalOpen(false)}
-                  aria-label="Close dialog"
+                  aria-label={t('common.close')}
                 >
                   <X size={18} />
                 </button>
@@ -290,8 +479,8 @@ export default function Navbar() {
                     <Phone size={18} />
                   </div>
                   <div>
-                    <div className="contact-info-label">Direct Line (UAE)</div>
-                    <div className="contact-info-value">+971 54 169 6975</div>
+                    <div className="contact-info-label">{t('nav.directLine')}</div>
+                    <div className="contact-info-value" dir="ltr">+971 54 169 6975</div>
                   </div>
                 </a>
 
@@ -304,8 +493,8 @@ export default function Navbar() {
                     <Mail size={18} />
                   </div>
                   <div>
-                    <div className="contact-info-label">Project Inquiries</div>
-                    <div className="contact-info-value">contact@ajjayer.ae</div>
+                    <div className="contact-info-label">{t('nav.directEmail')}</div>
+                    <div className="contact-info-value" dir="ltr">contact@ajjayer.ae</div>
                   </div>
                 </a>
 
@@ -314,9 +503,9 @@ export default function Navbar() {
                     <MapPin size={18} />
                   </div>
                   <div>
-                    <div className="contact-info-label">Head Office</div>
+                    <div className="contact-info-label">{t('nav.headquarters')}</div>
                     <div className="contact-info-value">
-                      Downtown & Business Bay, Dubai, UAE
+                      {t('nav.headquartersVal')}
                     </div>
                   </div>
                 </div>
@@ -326,9 +515,9 @@ export default function Navbar() {
                     <Clock size={18} />
                   </div>
                   <div>
-                    <div className="contact-info-label">Working Hours</div>
+                    <div className="contact-info-label">{t('nav.officeHours')}</div>
                     <div className="contact-info-value">
-                      Mon – Sat: 08:00 – 18:00 GST
+                      {t('nav.officeHoursVal')}
                     </div>
                   </div>
                 </div>
@@ -340,11 +529,11 @@ export default function Navbar() {
                 style={{ width: '100%', justifyContent: 'center' }}
                 onClick={() => {
                   setContactModalOpen(false);
-                  const contactEl = document.getElementById('contact');
-                  if (contactEl) {
-                    contactEl.scrollIntoView({ behavior: 'smooth' });
+                  if (location.pathname === '/') {
+                    const contactEl = document.getElementById('contact');
+                    if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
                   } else {
-                    window.location.assign('/#contact');
+                    navigate('/#contact');
                   }
                 }}
               >

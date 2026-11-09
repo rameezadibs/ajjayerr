@@ -68,7 +68,7 @@ export const capabilities = [
   },
   {
     id: '05',
-    slug: 'warehouses-peb',
+    slug: 'warehouses-pre-engineered-buildings',
     label: 'Warehouses & Pre-Engineered Buildings',
     title: ['Warehouses &', 'Pre-Engineered Buildings'],
     description: 'Turnkey PEB steel warehouses, industrial logistics hubs, and clear-span storage facilities optimized for maximum volume, durability, and operational flow.',

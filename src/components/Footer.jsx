@@ -1,19 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUp, Phone, Mail, MapPin, Clock } from 'lucide-react';
 import Brand from './Brand';
+import { useLanguage } from '../context/LanguageContext';
 import './Footer.css';
 
-const navColumns = [
+const navColumnsEn = [
   {
     num: '01',
     title: 'Services',
     links: [
-      { label: 'General Construction', href: '#capabilities' },
-      { label: 'Steel Structures & Fabrication', href: '#capabilities' },
-      { label: 'Tensile Shade Structures', href: '#capabilities' },
-      { label: 'Car Parking Shades & Pergolas', href: '#capabilities' },
-      { label: 'Warehouses & Pre-Engineered Buildings', href: '#capabilities' },
-      { label: 'Fit-Out & Finishing', href: '#capabilities' },
+      { label: 'General Construction', href: '/services/general-construction' },
+      { label: 'Steel Structures & Fabrication', href: '/services/steel-structures-fabrication' },
+      { label: 'Tensile Shade Structures', href: '/services/tensile-shade-structures' },
+      { label: 'Car Parking Shades & Pergolas', href: '/services/car-parking-shades-pergolas' },
+      { label: 'Warehouses & Pre-Engineered Buildings', href: '/services/warehouses-pre-engineered-buildings' },
+      { label: 'Fit-Out & Finishing', href: '/services/fit-out-finishing' },
     ],
   },
   {
@@ -41,7 +43,47 @@ const navColumns = [
   },
 ];
 
+const navColumnsAr = [
+  {
+    num: '01',
+    title: 'الخدمات والتخصصات',
+    links: [
+      { label: 'المقاولات العامة', href: '/services/general-construction' },
+      { label: 'الهياكل الفولاذية والتصنيع', href: '/services/steel-structures-fabrication' },
+      { label: 'مظلات الأشرعة المشدودة', href: '/services/tensile-shade-structures' },
+      { label: 'مظلات السيارات والبرجولات', href: '/services/car-parking-shades-pergolas' },
+      { label: 'المستودعات والمباني الجاهزة', href: '/services/warehouses-pre-engineered-buildings' },
+      { label: 'التشطيبات والديكور الداخلي', href: '/services/fit-out-finishing' },
+    ],
+  },
+  {
+    num: '02',
+    title: 'الشركة',
+    links: [
+      { label: 'نبذة عن مسيرتنا الهندسية', href: '#who-we-are' },
+      { label: 'فريق العمل والقيادة الهندسية', href: '#who-we-are' },
+      { label: 'معايير الجودة والسلامة المهنية', href: '#why-ajjayer' },
+      { label: 'الشهادات والاعتمادات الرسمية', href: '#why-ajjayer' },
+      { label: 'تقييمات وشهادات العملاء', href: '#testimonials' },
+      { label: 'الوظائف والفرص المهنية', href: '#contact' },
+    ],
+  },
+  {
+    num: '03',
+    title: 'القطاعات التخصصية',
+    links: [
+      { label: 'الأبراج والمشاريع التجارية', href: '#capabilities' },
+      { label: 'المستودعات والمصانع الحديثة', href: '#capabilities' },
+      { label: 'البنية التحتية والمرافق العامة', href: '#capabilities' },
+      { label: 'قطاع الطاقة والمشاريع الصناعية', href: '#capabilities' },
+      { label: 'المجمعات السكنية والتجارية الفاخرة', href: '#capabilities' },
+    ],
+  },
+];
+
 export default function Footer() {
+  const { isRTL } = useLanguage();
+  const navColumns = isRTL ? navColumnsAr : navColumnsEn;
   const isAboutPage = typeof window !== 'undefined' && /^\/about\/?$/.test(window.location.pathname);
   const getHref = (hash) => (isAboutPage ? `/${hash}` : hash);
 
@@ -70,7 +112,9 @@ export default function Footer() {
               <Brand className="footer-brand-logo" />
             </a>
             <p className="footer-brand-motto">
-              AJJAYER Constructions Contracting LLC integrates construction, structural engineering, and precision metal fabrication under one disciplined approach — delivering landmark reliability and enduring value across the United Arab Emirates.
+              {isRTL
+                ? 'تدمج شركة الجيّر لمقاولات البناء ذ.م.م بين أعمال المقاولات والهندسة الإنشائية والتصنيع المعدني فائق الدقة تحت نهج منضبط واحد — لتقديم معالم هندسية وقيمة مستدامة في مختلف أنحاء دولة الإمارات العربية المتحدة.'
+                : 'AJJAYER Constructions Contracting LLC integrates construction, structural engineering, and precision metal fabrication under one disciplined approach — delivering landmark reliability and enduring value across the United Arab Emirates.'}
             </p>
           </div>
         </div>
@@ -88,9 +132,15 @@ export default function Footer() {
               <ul className="footer-links-list">
                 {col.links.map((link) => (
                   <li key={link.label} className="footer-link-item">
-                    <a href={getHref(link.href)}>
-                      <span>{link.label}</span>
-                    </a>
+                    {link.href.startsWith('/') ? (
+                      <Link to={link.href}>
+                        <span>{link.label}</span>
+                      </Link>
+                    ) : (
+                      <a href={getHref(link.href)}>
+                        <span>{link.label}</span>
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -101,26 +151,30 @@ export default function Footer() {
           <div className="footer-col">
             <div className="footer-col-header">
               <span className="footer-col-num">04</span>
-              <h4 className="footer-col-title">Headquarters</h4>
+              <h4 className="footer-col-title">{isRTL ? 'المقر الرئيسي' : 'Headquarters'}</h4>
             </div>
 
             <div className="footer-contact-items">
               <div className="footer-contact-item">
                 <MapPin size={17} />
                 <div>
-                  <strong style={{ color: '#ffffff', display: 'block' }}>Prime Tower, Downtown</strong>
-                  <span>Business Bay, Dubai, United Arab Emirates</span>
+                  <strong style={{ color: '#ffffff', display: 'block' }}>
+                    {isRTL ? 'برج برايم، داون تاون' : 'Prime Tower, Downtown'}
+                  </strong>
+                  <span>
+                    {isRTL ? 'الخليج التجاري، دبي، الإمارات العربية المتحدة' : 'Business Bay, Dubai, United Arab Emirates'}
+                  </span>
                 </div>
               </div>
 
               <div className="footer-contact-item">
                 <Phone size={17} />
                 <div>
-                  <a href="tel:+971541696975" style={{ fontWeight: 500, color: '#ffffff' }}>
+                  <a href="tel:+971541696975" dir="ltr" style={{ fontWeight: 500, color: '#ffffff', display: 'inline-block' }}>
                     +971 54 169 6975
                   </a>
                   <span style={{ display: 'block', fontSize: '0.74rem', color: '#7d8285' }}>
-                    Direct Engineering Hotline
+                    {isRTL ? 'الخط الهاتفي المباشر للهندسة' : 'Direct Engineering Hotline'}
                   </span>
                 </div>
               </div>
@@ -128,11 +182,11 @@ export default function Footer() {
               <div className="footer-contact-item">
                 <Mail size={17} />
                 <div>
-                  <a href="mailto:contact@ajjayer.ae" style={{ color: '#ffffff' }}>
+                  <a href="mailto:contact@ajjayer.ae" dir="ltr" style={{ color: '#ffffff', display: 'inline-block' }}>
                     contact@ajjayer.ae
                   </a>
                   <span style={{ display: 'block', fontSize: '0.74rem', color: '#7d8285' }}>
-                    Project Consultations & RFPs
+                    {isRTL ? 'استشارات المشاريع وطلبات العروض' : 'Project Consultations & RFPs'}
                   </span>
                 </div>
               </div>
@@ -140,7 +194,9 @@ export default function Footer() {
               <div className="footer-contact-item">
                 <Clock size={17} />
                 <div>
-                  <span>Mon – Sat: 08:00 – 18:00 GST</span>
+                  <span>
+                    {isRTL ? 'الإثنين – السبت: ٠٨:٠٠ – ١٨:٠٠ بتوقيت الإمارات' : 'Mon – Sat: 08:00 – 18:00 GST'}
+                  </span>
                 </div>
               </div>
             </div>
@@ -153,25 +209,27 @@ export default function Footer() {
         <div className="footer-bottom-bar">
           <div className="footer-bottom-left">
             <p className="footer-copyright">
-              © {new Date().getFullYear()} AJJAYER Constructions Contracting LLC. All rights reserved.
+              {isRTL
+                ? `© ${new Date().getFullYear()} شركة الجيّر لمقاولات البناء ذ.م.م. جميع الحقوق محفوظة.`
+                : `© ${new Date().getFullYear()} AJJAYER Constructions Contracting LLC. All rights reserved.`}
             </p>
           </div>
 
           <div className="footer-bottom-right">
             <ul className="footer-legal-links">
-              <li><a href={getHref('#home')}>Privacy Policy</a></li>
-              <li><a href={getHref('#home')}>Terms of Engagement</a></li>
-              <li><a href={getHref('#home')}>HSE & Quality Policy</a></li>
-              <li><a href={getHref('#home')}>Sitemap</a></li>
+              <li><a href={getHref('#home')}>{isRTL ? 'سياسة الخصوصية' : 'Privacy Policy'}</a></li>
+              <li><a href={getHref('#home')}>{isRTL ? 'شروط التعاقد' : 'Terms of Engagement'}</a></li>
+              <li><a href={getHref('#home')}>{isRTL ? 'سياسة الجودة والسلامة' : 'HSE & Quality Policy'}</a></li>
+              <li><a href={getHref('#home')}>{isRTL ? 'خريطة الموقع' : 'Sitemap'}</a></li>
             </ul>
 
             <button
               type="button"
               className="footer-back-to-top"
               onClick={scrollToTop}
-              aria-label="Back to top of page"
+              aria-label={isRTL ? 'العودة لأعلى الصفحة' : 'Back to top of page'}
             >
-              <span>Back to Top</span>
+              <span>{isRTL ? 'العودة للأعلى' : 'Back to Top'}</span>
               <ArrowUp size={14} />
             </button>
           </div>

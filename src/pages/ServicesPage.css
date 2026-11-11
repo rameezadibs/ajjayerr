@@ -275,3 +275,164 @@
   letter-spacing: 0.08em;
   color: #8c9399;
 }
+
+/* ==========================================================================
+   SERVICES DIRECTORY & HUB RTL ADJUSTMENTS
+   ========================================================================== */
+[dir="rtl"] .directory-header {
+  text-align: right;
+}
+
+[dir="rtl"] .directory-h2 {
+  letter-spacing: normal;
+  line-height: 1.3;
+}
+
+[dir="rtl"] .directory-subtitle {
+  line-height: 1.8;
+}
+
+[dir="rtl"] .section-header-tag {
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+[dir="rtl"] .showcase-content {
+  text-align: right;
+}
+
+[dir="rtl"] .showcase-meta {
+  flex-direction: row;
+}
+
+[dir="rtl"] .showcase-title-link {
+  letter-spacing: normal;
+  line-height: 1.3;
+}
+
+[dir="rtl"] .showcase-tagline {
+  line-height: 1.75;
+}
+
+[dir="rtl"] .showcase-caps-preview {
+  justify-content: flex-start;
+}
+
+[dir="rtl"] .showcase-link-btn {
+  align-self: flex-start;
+  letter-spacing: normal;
+}
+
+[dir="rtl"] .showcase-link-btn:hover {
+  transform: translateX(-4px);
+}
+
+[dir="rtl"] .integration-card {
+  text-align: center;
+}
+
+[dir="rtl"] .integration-eyebrow {
+  letter-spacing: normal;
+}
+
+[dir="rtl"] .integration-h2 {
+  letter-spacing: normal;
+  line-height: 1.3;
+}
+
+[dir="rtl"] .integration-copy {
+  line-height: 1.8;
+}
+
+[dir="rtl"] .metric-label {
+  letter-spacing: normal;
+}
+
+@media (max-width: 640px) {
+  [dir="rtl"] .services-integration-section {
+    padding: 3rem 0 4rem;
+  }
+
+  [dir="rtl"] .integration-card {
+    padding: 2.25rem 1.25rem;
+    text-align: center;
+  }
+
+  [dir="rtl"] .integration-eyebrow {
+    font-size: 0.72rem;
+    margin-bottom: 0.65rem;
+    letter-spacing: normal;
+  }
+
+  [dir="rtl"] .integration-h2 {
+    font-size: clamp(1.45rem, 5.8vw, 2.1rem);
+    line-height: 1.35;
+    margin-bottom: 1rem;
+    letter-spacing: normal;
+  }
+
+  [dir="rtl"] .integration-copy {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  [dir="rtl"] .integration-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  [dir="rtl"] .metric-box {
+    padding: 1.2rem 0.75rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [dir="rtl"] .metric-number {
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.1;
+  }
+
+  [dir="rtl"] .metric-label {
+    font-size: 0.75rem;
+    line-height: 1.45;
+    letter-spacing: normal;
+    text-transform: none;
+    color: #a4abb2;
+  }
+
+  [dir="rtl"] .showcase-content {
+    padding: 1.5rem 1.25rem;
+    text-align: right;
+  }
+
+  [dir="rtl"] .showcase-title-link {
+    font-size: 1.5rem;
+  }
+
+  [dir="rtl"] .showcase-tagline {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  [dir="rtl"] .showcase-caps-preview {
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  [dir="rtl"] .showcase-cap-badge {
+    font-size: 0.62rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  [dir="rtl"] .showcase-link-btn {
+    font-size: 0.75rem;
+  }
+}
+

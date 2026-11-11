@@ -3,7 +3,6 @@ import HeroSection from '../components/HeroSection';
 import WhoWeAreSection from '../components/WhoWeAreSection';
 import CapabilitiesSection from '../components/CapabilitiesSection';
 import WhyAjjayerSection from '../components/WhyAjjayerSection';
-import TestimonialsSection from '../components/TestimonialsSection';
 import CTASection from '../components/CTASection';
 import SEOHead from '../components/SEOHead';
 
@@ -21,7 +20,6 @@ export default function HomePage() {
         <WhoWeAreSection />
         <CapabilitiesSection />
         <WhyAjjayerSection />
-        <TestimonialsSection />
         <CTASection />
       </main>
     </>

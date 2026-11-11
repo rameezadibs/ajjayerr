@@ -5,7 +5,6 @@ import ContactHero from '../components/contact/ContactHero';
 import ArchitecturalConnector from '../components/contact/ArchitecturalConnector';
 import ProjectEnquirySection from '../components/contact/ProjectEnquirySection';
 import DirectContactStrip from '../components/contact/DirectContactStrip';
-import LocationSection from '../components/contact/LocationSection';
 import ContactCTA from '../components/contact/ContactCTA';
 import { useLanguage } from '../context/LanguageContext';
 import './ContactPage.css';
@@ -84,10 +83,7 @@ export default function ContactPage() {
       {/* 4. Direct Contact Strip (Call, Email, WhatsApp) */}
       <DirectContactStrip />
 
-      {/* 5. Dubai / UAE Location Section */}
-      <LocationSection />
-
-      {/* 6. Final CTA */}
+      {/* 5. Final CTA */}
       <ContactCTA />
     </div>
   );

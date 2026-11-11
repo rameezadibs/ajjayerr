@@ -112,17 +112,8 @@ async function runContactTests() {
     assert.equal(await waLink.getAttribute('rel'), 'noopener noreferrer');
     console.log('✓ Direct contact strip verified (Call, Email, WhatsApp with noopener noreferrer)');
 
-    // 8. Location Section (Dubai, UAE & Coordinates)
-    console.log('\n--- 5. Testing Location Section ---');
-    const locH2 = await page.locator('#location-heading').textContent();
-    assert.ok(locH2.includes('DUBAI') && locH2.includes('UNITED ARAB EMIRATES'));
-
-    const coords = await page.locator('.location-coords-box').textContent();
-    assert.ok(coords.includes('25.2048° N') && coords.includes('55.2708° E'));
-    console.log('✓ Location coordinates and Dubai heading verified');
-
-    // 9. Final CTA
-    console.log('\n--- 6. Testing Final CTA Smooth Scroll ---');
+    // 8. Final CTA
+    console.log('\n--- 5. Testing Final CTA Smooth Scroll ---');
     const finalCta = page.locator('.final-cta-btn');
     assert.equal(await finalCta.isVisible(), true);
     await finalCta.click();

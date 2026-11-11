@@ -150,7 +150,7 @@ export default function CTASection({
               whileTap={{ y: 0 }}
             >
               <span>{primary.label}</span>
-              <ArrowRight size={17} aria-hidden="true" style={{ transform: isRTL ? 'scaleX(-1)' : 'none' }} />
+              <ArrowRight size={17} aria-hidden="true" className="cta-btn-arrow" />
             </motion.a>
 
             <motion.a
@@ -161,9 +161,9 @@ export default function CTASection({
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >
-              <Phone size={16} aria-hidden="true" />
-              <span dir="ltr">{secondary.label}</span>
-              <ArrowRight size={17} aria-hidden="true" style={{ transform: isRTL ? 'scaleX(-1)' : 'none' }} />
+              <Phone size={16} aria-hidden="true" className="cta-phone-icon" />
+              <span className="cta-phone-num">{secondary.label}</span>
+              <ArrowRight size={17} aria-hidden="true" className="cta-btn-arrow" />
             </motion.a>
           </motion.div>
         </div>

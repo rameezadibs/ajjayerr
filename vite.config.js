@@ -39,6 +39,9 @@ function apiDevMiddleware() {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), apiDevMiddleware()]
+  plugins: [react(), tailwindcss(), apiDevMiddleware()],
+  server: {
+    host: true
+  }
 });
 

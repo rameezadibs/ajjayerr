@@ -99,6 +99,21 @@ export function LanguageProvider({ children }) {
         title: arData.capabilities?.[idx]?.title || cap.title,
         description: arData.capabilities?.[idx]?.description || cap.description
       })),
+      deliverySteps: (arData.deliverySteps || (arData.process ? arData.process.map(p => ({
+        num: p.step,
+        title: p.title,
+        description: p.desc || p.description
+      })) : null)) || service.deliverySteps,
+      relatedServices: (arData.relatedServices || service.relatedServices?.map(rel => {
+        const relAr = servicesArabicData[rel.slug];
+        const title = relAr?.title || rel.title;
+        const shortTitle = relAr?.shortTitle || title;
+        return {
+          ...rel,
+          title,
+          anchor: relAr ? `استكشف حلول وخدمات ${shortTitle} المعتمدة في الإمارات ←` : rel.anchor
+        };
+      })) || service.relatedServices,
       faqs: arData.faqs || service.faqs,
       process: arData.process || service.process
     };

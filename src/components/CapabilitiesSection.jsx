@@ -107,14 +107,14 @@ export default function CapabilitiesSection({ servicesHref = '/services', capabi
     <div className="cap-main grid">
       <div className="cap-index relative min-w-0">
         <span className="cap-vertical-note" aria-hidden="true">
-          {isRTL ? 'مقاولات عامة · فولاذ · مظلات مشدودة · مستودعات · تشطيبات' : 'General Construction · Steel · Tensile · Warehouses · Fit-Out'}
+          {isRTL ? 'مقاولات عامة · مظلات مشدودة · مستودعات · تشطيبات' : 'General Construction · Tensile · Warehouses · Fit-Out'}
         </span>
         <motion.p className="cap-eyebrow flex items-center" {...reveal()}><span>03</span><i/><span>{t('nav.ourServices')}</span></motion.p>
         <h2 id={`${id}-heading`} className="cap-intro-heading">{introHeadingLines.map((line,i) => <motion.span key={line} className={i===2 ? 'cap-accent' : ''} {...reveal(.05+i*.05)}>{line}</motion.span>)}</h2>
         <motion.p className="cap-intro-copy" {...reveal(.18)}>
           {isRTL
-            ? 'من المقاولات العامة والهياكل الفولاذية إلى الأشرعة المشدودة ومستودعات المباني الجاهزة والتشطيبات المتكاملة، تقدم الجيّر تميزاً هندسياً شاملاً في كافة أرجاء دولة الإمارات.'
-            : 'From general construction and structural steel to architectural tensile structures, pre-engineered warehouses and turnkey fit-outs, AJJAYER delivers end-to-end engineering excellence across the UAE.'}
+            ? 'من المقاولات العامة إلى الأشرعة المشدودة ومستودعات المباني الجاهزة والتشطيبات المتكاملة، تقدم الجيّر تميزاً هندسياً شاملاً في كافة أرجاء دولة الإمارات.'
+            : 'From general construction to architectural tensile structures, pre-engineered warehouses and turnkey fit-outs, AJJAYER delivers end-to-end engineering excellence across the UAE.'}
         </motion.p>
         <div className="cap-tabs" role="tablist" aria-label="Choose a service" aria-orientation={mobile ? 'horizontal' : 'vertical'}>{capabilities.map((item,i) => {
           const locItemLabel = isRTL ? (servicesArabicData[item.slug]?.shortTitle || servicesArabicData[item.slug]?.title || item.label) : item.label;
@@ -138,7 +138,7 @@ export default function CapabilitiesSection({ servicesHref = '/services', capabi
             >
               <span>‹</span> {t('capabilities.mobileNavPrev')}
             </button>
-            <span className="cap-mobile-nav-counter"><b>{active.id}</b> / 06</span>
+            <span className="cap-mobile-nav-counter"><b>{active.id}</b> / 05</span>
             <button
               type="button"
               className="cap-mobile-nav-btn"

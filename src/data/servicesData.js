@@ -171,14 +171,14 @@ export const servicesData = [
 
     relatedServices: [
       {
-        slug: 'steel-structures-fabrication',
-        title: 'Steel Structures & Fabrication',
-        anchor: 'Explore our structural steel fabrication and erection solutions →'
-      },
-      {
         slug: 'warehouses-pre-engineered-buildings',
         title: 'Warehouses & Pre-Engineered Buildings',
         anchor: 'Discover our turnkey PEB and industrial logistics facilities →'
+      },
+      {
+        slug: 'tensile-shade-structures',
+        title: 'Tensile Shade Structures',
+        anchor: 'Explore our architectural tension membrane canopies →'
       },
       {
         slug: 'fit-out-finishing',
@@ -190,171 +190,6 @@ export const servicesData = [
 
   {
     id: '02',
-    slug: 'steel-structures-fabrication',
-    path: '/services/steel-structures-fabrication',
-    title: 'Steel Structures & Fabrication',
-    shortTitle: 'Steel Structures',
-    descriptor: 'Engineering • Fabrication • Installation',
-    tagline: 'Precision structural steel framing, bespoke metal fabrication, and certified heavy welding engineered for extreme load capacities.',
-    seoTitle: 'Steel Structure & Fabrication Company Dubai | AJJAYER',
-    metaDescription: 'AJJAYER provides structural steel fabrication, engineering and installation solutions across Dubai and the UAE, delivering precision, quality and reliable project execution.',
-    h1: 'Steel Structures & Fabrication in Dubai',
-    image: '/services/3.png',
-    imageAlt: 'Certified structural steel welder fabricating heavy industrial frame in Dubai workshop',
-    imageWidth: 1920,
-    imageHeight: 1080,
-    technicalRef: 'FRAME CONNECTION S-02 / STRUCTURAL STEEL',
-    drawingType: 'structure',
-
-    overview: [
-      'AJJAYER is a leading structural steel fabrication and engineering contractor headquartered in Dubai, delivering heavy industrial steel framing, complex architectural trusses, bespoke metalwork, and certified on-site erection throughout the UAE.',
-      'Utilizing high-grade steel profiles (S275, S355, ASTM A36, A572) and state-of-the-art CNC cutting, drilling, and robotic plasma profiling, our specialized fabrication facility ensures millimeter-level accuracy. Every joint, weld, and connection is engineered to withstand extreme thermal expansion, high wind loads, and seismic forces common to Arabian Gulf architectural demands.'
-    ],
-
-    capabilities: [
-      {
-        icon: Building2,
-        title: 'Heavy Structural Steel Framing',
-        description: 'Multi-storey structural steel frameworks, industrial pipe racks, crane runway girders, and clear-span stadium trusses.'
-      },
-      {
-        icon: Blocks,
-        title: 'Precision Shop Fabrication',
-        description: 'In-house CNC sawing, automatic plate shearing, automated beveling, and beam assembly in our UAE fabrication facility.'
-      },
-      {
-        icon: Flame,
-        title: 'Certified Welding (AWS / EN ISO)',
-        description: 'Welders certified to AWS D1.1, EN ISO 9606, and ASME standards with 100% NDT inspection protocols.'
-      },
-      {
-        icon: DraftingCompass,
-        title: '3D Tekla BIM Detailing',
-        description: 'Comprehensive connection design, clash detection, and shop fabrication drawing generation via Tekla Structures.'
-      },
-      {
-        icon: ShieldCheck,
-        title: 'Corrosion Protection & Fireproofing',
-        description: 'Hot-dip galvanizing to BS EN ISO 1461, multi-coat epoxy systems, and intumescent passive fireproofing coatings.'
-      },
-      {
-        icon: Timer,
-        title: 'Safe Crane Erection & Rigging',
-        description: 'Licensed heavy crane rigging plans, qualified riggers, and rapid on-site assembly to reduce field schedule.'
-      }
-    ],
-
-    deliverySteps: [
-      {
-        num: '01',
-        title: '3D BIM Detailing & Connection Engineering',
-        description: 'Translating architectural concepts into fully calculated Tekla connection models verified by UAE certified structural engineers.'
-      },
-      {
-        num: '02',
-        title: 'Material Sourcing & Mill Certification',
-        description: 'Procuring certified steel with complete mill test certificates (MTC 3.1) guaranteeing chemical and tensile compliance.'
-      },
-      {
-        num: '03',
-        title: 'CNC Cutting, Fit-Up & Certified Welding',
-        description: 'High-precision automated cutting, assembly fit-up, and submerged arc or flux-cored welding under continuous QC supervision.'
-      },
-      {
-        num: '04',
-        title: 'Blasting & Protective Coating',
-        description: 'SA 2.5 abrasive grit blasting followed by hot-dip galvanizing, industrial marine epoxy primers, or intumescent fireproofing.'
-      },
-      {
-        num: '05',
-        title: 'Engineered Rigging & On-Site Erection',
-        description: 'Transport to site with police escorts where required, followed by synchronized mobile crane erection and torque bolt inspections.'
-      }
-    ],
-
-    projectTypes: [
-      {
-        name: 'Industrial Processing Facilities',
-        scope: 'Heavy steel process towers, pipe bridges, and conveyor support structures engineered for harsh industrial duty.'
-      },
-      {
-        name: 'Architectural Canopies & Trusses',
-        scope: 'Curvilinear structural steel trusses and feature architectural elements for landmark public infrastructure.'
-      },
-      {
-        name: 'Mezzanines & Plant Platforms',
-        scope: 'Heavy-capacity mezzanine floors and industrial equipment platforms for logistics hubs and manufacturing plants.'
-      },
-      {
-        name: 'Aircraft Hangars & Large Spans',
-        scope: 'Super-span steel trusses providing uninhibited floor openings exceeding 60 meters without intermediate columns.'
-      }
-    ],
-
-    whyChoose: [
-      {
-        title: 'Millimeter Tolerance Control',
-        description: 'Advanced CNC fabrication and trial assemblies ensure effortless, clash-free bolting on the construction site.'
-      },
-      {
-        title: 'Rigorous NDT Testing',
-        description: 'Ultrasonic (UT), Magnetic Particle (MPI), and Radiographic (RT) testing on all critical moment connections.'
-      },
-      {
-        title: 'Experienced Erection Crews',
-        description: 'Certified rigging superintendents and mobile crane teams ensure the highest standards of safety during heavy lifts.'
-      },
-      {
-        title: 'Integrated Supply Chain',
-        description: 'Direct relationships with primary steel mills ensure competitive pricing and resilient material lead times.'
-      }
-    ],
-
-    qualitySafety: {
-      standards: ['AISC 360 Specification for Structural Steel', 'AWS D1.1 Structural Welding Code', 'BS EN 1090 Execution of Steel Structures', 'ISO 3834 Quality Requirements for Fusion Welding'],
-      description: 'All fabricated elements undergo visual inspection, dimensional verification against approved Tekla models, and non-destructive weld testing documented in a comprehensive Manufacturer Data Report (MDR).'
-    },
-
-    faqs: [
-      {
-        q: 'What steel grades does AJJAYER fabricate?',
-        a: 'We routinely fabricate with European standard S275JR/JO/J2 and S355JR/J2, as well as ASTM A36, A572 Grade 50, and stainless steel grades 304/316 for specialized architectural and marine installations.'
-      },
-      {
-        q: 'What surface treatment systems do you provide for UAE coastal environments?',
-        a: 'We provide hot-dip galvanizing conforming to BS EN ISO 1461, high-build epoxy zinc-rich priming systems with polyurethane topcoats, and DCD-approved intumescent coatings for up to 120 minutes fire rating.'
-      },
-      {
-        q: 'Can AJJAYER assist with structural connection calculations and approvals?',
-        a: 'Yes. Our structural engineering department carries out full connection calculations, FEA analysis, and provides DM/DCD municipality-stamped documentation for statutory approvals.'
-      },
-      {
-        q: 'What is your turnaround time for structural steel fabrication?',
-        a: 'Turnaround depends on project tonnage, but with automated CNC lines and multi-shift welding bays, we deliver typical commercial and warehouse packages within 4 to 8 weeks from shop drawing sign-off.'
-      }
-    ],
-
-    relatedServices: [
-      {
-        slug: 'warehouses-pre-engineered-buildings',
-        title: 'Warehouses & Pre-Engineered Buildings',
-        anchor: 'Explore our Pre-Engineered Building (PEB) structural systems →'
-      },
-      {
-        slug: 'general-construction',
-        title: 'General Construction',
-        anchor: 'View our end-to-end commercial general contracting services →'
-      },
-      {
-        slug: 'tensile-shade-structures',
-        title: 'Tensile Shade Structures',
-        anchor: 'Inspect our architectural tension membrane canopies →'
-      }
-    ]
-  },
-
-  {
-    id: '03',
     slug: 'tensile-shade-structures',
     path: '/services/tensile-shade-structures',
     title: 'Tensile Shade Structures',
@@ -369,7 +204,7 @@ export const servicesData = [
     imageAlt: 'Modern architectural tensile canopy pergola structure under warm light in Dubai UAE',
     imageWidth: 1448,
     imageHeight: 1086,
-    technicalRef: 'CANOPY TENSION ELEVATION T-03 / MEMBRANE DETAIL',
+    technicalRef: 'CANOPY TENSION ELEVATION T-02 / MEMBRANE DETAIL',
     drawingType: 'tensile',
 
     overview: [
@@ -507,15 +342,15 @@ export const servicesData = [
         anchor: 'Discover our specialized cantilever car parking shades and pergolas →'
       },
       {
-        slug: 'steel-structures-fabrication',
-        title: 'Steel Structures & Fabrication',
-        anchor: 'Inspect our heavy structural steel engineering and mast fabrication →'
+        slug: 'general-construction',
+        title: 'General Construction',
+        anchor: 'View our end-to-end commercial general contracting services →'
       }
     ]
   },
 
   {
-    id: '04',
+    id: '03',
     slug: 'car-parking-shades-pergolas',
     path: '/services/car-parking-shades-pergolas',
     title: 'Car Parking Shades & Pergolas',
@@ -530,7 +365,7 @@ export const servicesData = [
     imageAlt: 'Commercial cantilever car parking shade canopy installation in Dubai UAE',
     imageWidth: 1536,
     imageHeight: 1024,
-    technicalRef: 'CANTILEVER SECTION P-04 / SHADE SYSTEM',
+    technicalRef: 'CANTILEVER SECTION P-03 / SHADE SYSTEM',
     drawingType: 'pergola',
 
     overview: [
@@ -668,15 +503,15 @@ export const servicesData = [
         anchor: 'Explore our architectural tensile fabric canopies and sails →'
       },
       {
-        slug: 'steel-structures-fabrication',
-        title: 'Steel Structures & Fabrication',
-        anchor: 'View our certified heavy metal and structural steel fabrication →'
+        slug: 'general-construction',
+        title: 'General Construction',
+        anchor: 'Learn about our commercial and residential construction services →'
       }
     ]
   },
 
   {
-    id: '05',
+    id: '04',
     slug: 'warehouses-pre-engineered-buildings',
     path: '/services/warehouses-pre-engineered-buildings',
     title: 'Warehouses & Pre-Engineered Buildings',
@@ -690,7 +525,7 @@ export const servicesData = [
     imageAlt: 'Interior clear-span portal frame pre-engineered warehouse building under construction in Dubai UAE',
     imageWidth: 1920,
     imageHeight: 1080,
-    technicalRef: 'PORTAL FRAME SECTION W-05 / PEB INDUSTRIAL DETAIL',
+    technicalRef: 'PORTAL FRAME SECTION W-04 / PEB INDUSTRIAL DETAIL',
     drawingType: 'warehouse',
 
     overview: [
@@ -823,11 +658,6 @@ export const servicesData = [
 
     relatedServices: [
       {
-        slug: 'steel-structures-fabrication',
-        title: 'Steel Structures & Fabrication',
-        anchor: 'Inspect our specialized structural steel fabrication capabilities →'
-      },
-      {
         slug: 'general-construction',
         title: 'General Construction',
         anchor: 'Learn about our full turnkey commercial and civil contracting →'
@@ -841,7 +671,7 @@ export const servicesData = [
   },
 
   {
-    id: '06',
+    id: '05',
     slug: 'fit-out-finishing',
     path: '/services/fit-out-finishing',
     title: 'Fit-Out & Finishing',
@@ -855,7 +685,7 @@ export const servicesData = [
     imageAlt: 'High-end commercial architectural interior fit-out with warm pendant lighting and contemporary seating in Dubai',
     imageWidth: 1920,
     imageHeight: 1080,
-    technicalRef: 'FINISHING SECTION F-06 / INTERIOR DETAIL',
+    technicalRef: 'FINISHING SECTION F-05 / INTERIOR DETAIL',
     drawingType: 'interior',
 
     overview: [
@@ -1003,7 +833,7 @@ export const servicesData = [
 
 export const servicesHubData = {
   seoTitle: 'Comprehensive Construction & Engineering Services Dubai | AJJAYER',
-  metaDescription: 'Explore AJJAYER\'s six core construction and structural engineering disciplines in Dubai, UAE — from heavy steel fabrication and PEB warehouses to tensile canopies and turnkey fit-outs.',
+  metaDescription: 'Explore AJJAYER\'s core construction and architectural engineering disciplines in Dubai, UAE — from PEB warehouses to tensile canopies, car parking shades, and turnkey fit-outs.',
   h1: 'Engineering & Construction Services in Dubai & UAE',
   canonical: 'https://ajjayer.ae/services',
   heroEyebrow: 'FROM VISION TO REALITY',

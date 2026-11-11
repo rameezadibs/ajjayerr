@@ -21,7 +21,7 @@ export default function ServicesPage() {
       {/* Route-Specific SEO Head */}
       <SEOHead
         title={isRTL ? 'خدمات المقاولات والهندسة الإنشائية في دبي | الجيّر' : servicesHubData.seoTitle}
-        description={isRTL ? 'استكشف التخصصات الستة لشركة الجيّر: المقاولات العامة، تصنيع الهياكل الفولاذية، مظلات الأشرعة المشدودة، مظلات السيارات، المستودعات، والتشطيبات.' : servicesHubData.metaDescription}
+        description={isRTL ? 'استكشف التخصصات الهندسية لشركة الجيّر: المقاولات العامة، مظلات الأشرعة المشدودة، مظلات السيارات، المستودعات، والتشطيبات.' : servicesHubData.metaDescription}
         canonicalUrl={servicesHubData.canonical}
         ogImage="/services/services-architecture.png"
         breadcrumbs={breadcrumbsList}
@@ -37,19 +37,19 @@ export default function ServicesPage() {
 
           <div className="directory-header">
             <div className="section-header-tag">
-              <span className="section-tag-num">06</span>
+              <span className="section-tag-num">05</span>
               <span className="section-tag-line" aria-hidden="true" />
               <span className="section-tag-label">
                 {isRTL ? 'التخصصات الهندسية الرئيسية' : 'CORE DISCIPLINES'}
               </span>
             </div>
             <h2 id="directory-heading" className="directory-h2">
-              {isRTL ? 'تخصصات معمارية وإنشائية وهندسية متكاملة' : 'Integrated Architectural & Structural Disciplines'}
+              {isRTL ? 'تخصصات معمارية وإنشائية متكاملة' : 'Integrated Architectural & Structural Disciplines'}
             </h2>
             <p className="directory-subtitle">
               {isRTL
-                ? 'توفر الجيّر نقطة مسؤولية هندسية موحدة عبر ستة قطاعات إنشائية وتصنيعية متخصصة في كافة أنحاء دولة الإمارات.'
-                : 'AJJAYER provides single-point technical accountability across six specialized construction and fabrication sectors throughout the UAE.'}
+                ? 'توفر الجيّر نقطة مسؤولية هندسية موحدة عبر قطاعات إنشائية وتصنيعية متخصصة في كافة أنحاء دولة الإمارات.'
+                : 'AJJAYER provides single-point technical accountability across specialized construction sectors throughout the UAE.'}
             </p>
           </div>
 
@@ -123,8 +123,8 @@ export default function ServicesPage() {
             </h2>
             <p className="integration-copy">
               {isRTL
-                ? 'من خلال امتلاك قدرات الهندسة المدنية وتصنيع الهياكل الفولاذية وإنتاج مظلات الشد المعماري ذاتياً، تقضي شركة الجيّر على تعارض المقاولين الباطنيين وهدر الوقت والتكاليف، لضمان تسليم سلس ودقيق.'
-                : 'By controlling in-house civil engineering, steel fabrication, and tensile canopy production, AJJAYER eliminates the subcontractor friction, margin compounding, and scheduling bottlenecks typical of multi-tiered UAE projects.'}
+                ? 'من خلال امتلاك قدرات الهندسة المدنية وإنتاج مظلات الشد المعماري ذاتياً، تقضي شركة الجيّر على تعارض المقاولين الباطنيين وهدر الوقت والتكاليف، لضمان تسليم سلس ودقيق.'
+                : 'By controlling in-house civil engineering, tensile canopy production, and architectural execution, AJJAYER eliminates the subcontractor friction, margin compounding, and scheduling bottlenecks typical of multi-tiered UAE projects.'}
             </p>
             <div className="integration-metrics-grid">
               <div className="metric-box">
@@ -134,7 +134,7 @@ export default function ServicesPage() {
                 </span>
               </div>
               <div className="metric-box">
-                <span className="metric-number" dir="ltr">06</span>
+                <span className="metric-number" dir="ltr">05</span>
                 <span className="metric-label">
                   {isRTL ? 'تخصصات رئيسية موحدة' : 'Unified Core Disciplines'}
                 </span>

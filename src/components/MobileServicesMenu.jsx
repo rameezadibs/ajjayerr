@@ -14,24 +14,31 @@ export default function MobileServicesMenu({ onItemClick }) {
 
   return (
     <div className="mobile-services-accordion">
-      <button
-        type="button"
-        className={`mobile-services-trigger ${isServicesActive ? 'is-active' : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-expanded={isOpen}
-      >
-        <div className="mobile-services-label-wrap">
+      <div className={`mobile-services-header-row ${isServicesActive ? 'is-active' : ''}`}>
+        <Link
+          to="/services"
+          className="mobile-services-main-link"
+          onClick={onItemClick}
+        >
           <span className="mobile-services-num">03</span>
           <span className="mobile-services-title">{t('nav.services')}</span>
-        </div>
-        <motion.div
-          className="mobile-services-chevron"
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.25 }}
+        </Link>
+        <button
+          type="button"
+          className="mobile-services-toggle-btn"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-label={isOpen ? 'Collapse services menu' : 'Expand services menu'}
         >
-          <ChevronDown size={18} />
-        </motion.div>
-      </button>
+          <motion.div
+            className="mobile-services-chevron"
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <ChevronDown size={18} />
+          </motion.div>
+        </button>
+      </div>
 
       <AnimatePresence initial={false}>
         {isOpen && (

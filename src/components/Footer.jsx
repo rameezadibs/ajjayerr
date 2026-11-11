@@ -11,7 +11,6 @@ const navColumnsEn = [
     title: 'Services',
     links: [
       { label: 'General Construction', href: '/services/general-construction' },
-      { label: 'Steel Structures & Fabrication', href: '/services/steel-structures-fabrication' },
       { label: 'Tensile Shade Structures', href: '/services/tensile-shade-structures' },
       { label: 'Car Parking Shades & Pergolas', href: '/services/car-parking-shades-pergolas' },
       { label: 'Warehouses & Pre-Engineered Buildings', href: '/services/warehouses-pre-engineered-buildings' },
@@ -26,7 +25,6 @@ const navColumnsEn = [
       { label: 'Engineering Team & Leadership', href: '#who-we-are' },
       { label: 'Quality & HSE Standards', href: '#why-ajjayer' },
       { label: 'Certifications & Compliance', href: '#why-ajjayer' },
-      { label: 'Verified Client Testimonials', href: '#testimonials' },
       { label: 'Careers in Dubai & UAE', href: '#contact' },
     ],
   },
@@ -49,7 +47,6 @@ const navColumnsAr = [
     title: 'الخدمات والتخصصات',
     links: [
       { label: 'المقاولات العامة', href: '/services/general-construction' },
-      { label: 'الهياكل الفولاذية والتصنيع', href: '/services/steel-structures-fabrication' },
       { label: 'مظلات الأشرعة المشدودة', href: '/services/tensile-shade-structures' },
       { label: 'مظلات السيارات والبرجولات', href: '/services/car-parking-shades-pergolas' },
       { label: 'المستودعات والمباني الجاهزة', href: '/services/warehouses-pre-engineered-buildings' },
@@ -64,7 +61,6 @@ const navColumnsAr = [
       { label: 'فريق العمل والقيادة الهندسية', href: '#who-we-are' },
       { label: 'معايير الجودة والسلامة المهنية', href: '#why-ajjayer' },
       { label: 'الشهادات والاعتمادات الرسمية', href: '#why-ajjayer' },
-      { label: 'تقييمات وشهادات العملاء', href: '#testimonials' },
       { label: 'الوظائف والفرص المهنية', href: '#contact' },
     ],
   },
@@ -158,11 +154,8 @@ export default function Footer() {
               <div className="footer-contact-item">
                 <MapPin size={17} />
                 <div>
-                  <strong style={{ color: '#ffffff', display: 'block' }}>
-                    {isRTL ? 'برج برايم، داون تاون' : 'Prime Tower, Downtown'}
-                  </strong>
-                  <span>
-                    {isRTL ? 'الخليج التجاري، دبي، الإمارات العربية المتحدة' : 'Business Bay, Dubai, United Arab Emirates'}
+                  <span style={{ color: '#ffffff', display: 'block' }}>
+                    {isRTL ? 'دبي، الإمارات العربية المتحدة' : 'Dubai, United Arab Emirates'}
                   </span>
                 </div>
               </div>
@@ -194,8 +187,8 @@ export default function Footer() {
               <div className="footer-contact-item">
                 <Clock size={17} />
                 <div>
-                  <span>
-                    {isRTL ? 'الإثنين – السبت: ٠٨:٠٠ – ١٨:٠٠ بتوقيت الإمارات' : 'Mon – Sat: 08:00 – 18:00 GST'}
+                  <span style={{ color: '#ffffff', display: 'block' }}>
+                    {isRTL ? '٩:٠٠ ص – ٦:٠٠ م' : '9:00 AM – 6:00 PM'}
                   </span>
                 </div>
               </div>

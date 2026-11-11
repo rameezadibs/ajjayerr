@@ -71,10 +71,6 @@ export default function ServicesHeroSection({ servicesHref = '/#capabilities', o
         initial={reducedMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.9, ease: 'easeOut' }}
-        style={{
-          transform: isRTL ? 'scaleX(-1)' : 'none',
-          transformOrigin: 'center',
-        }}
       >
         {photographs.map(([name, alt], index) => (
           <div className={`services-photo services-photo--${name}`} key={name}>
@@ -83,9 +79,6 @@ export default function ServicesHeroSection({ servicesHref = '/#capabilities', o
               alt={alt}
               decoding="async"
               fetchPriority={index < 2 ? 'high' : 'auto'}
-              style={{
-                transform: isRTL ? 'scaleX(-1)' : 'none',
-              }}
             />
           </div>
         ))}

@@ -40,17 +40,145 @@
 }
 
 @media (max-width: 767px) {
-  .services-hero { min-height: 100svh; display: flex; flex-direction: column; }
-  .services-editorial { width: auto; margin: 0; padding: 140px 7% 34px; }
-  .services-eyebrow { font-size: 10px; letter-spacing: .35em; margin-bottom: 22px; }
-  .services-heading { font-size: clamp(66px,16vw,112px); }
-  .services-rule { margin: 24px 0 20px; width: 44px; height: 3px; }
-  .services-description { font-size: 14px; line-height: 1.65; max-width: 480px; }
-  .services-cta { min-height: 52px; margin-top: 24px; padding: 14px 20px; font-size: 11px; gap: 25px; }
-  .services-purpose { position: relative; left: auto; bottom: auto; order: 1; margin: 0 7% 30px; font-size: 10px; }
-  .services-visual { position: relative; inset: auto; order: 2; width: 135%; margin-left: -35%; height: 78vw; min-height: 270px; clip-path: polygon(29% 0,100% 0,100% 100%,25.8% 100%); }
-  .services-photo--sails { clip-path: polygon(0 0,100% 0,75.8% 88.2%,0 100%); }
-  .services-drafting { height: 600px; width: 200%; opacity: .5; }
+  .services-hero {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .services-editorial {
+    order: 0;
+    width: 100%;
+    margin: 0;
+    padding: 85px 6% 28px;
+    box-sizing: border-box;
+  }
+  .services-eyebrow {
+    font-size: 10px;
+    letter-spacing: .25em;
+    margin-bottom: 16px;
+    white-space: normal;
+  }
+  .services-heading {
+    font-size: clamp(48px, 13vw, 84px);
+    line-height: .92;
+    letter-spacing: -.04em;
+    margin: 0;
+  }
+  .services-heading > span {
+    display: block;
+    white-space: normal;
+  }
+  .services-heading > span + span {
+    margin-top: 4px;
+    color: #9B6038;
+  }
+  .services-rule {
+    margin: 20px 0 18px;
+    width: 44px;
+    height: 3px;
+  }
+  .services-description {
+    font-size: 14px;
+    line-height: 1.65;
+    max-width: 100%;
+    letter-spacing: normal;
+    margin: 0 0 24px;
+  }
+  .services-cta {
+    min-height: 48px;
+    margin-top: 0;
+    padding: 14px 22px;
+    font-size: 11px;
+    letter-spacing: .05em;
+    width: 100%;
+    max-width: 290px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    box-sizing: border-box;
+  }
+  .services-cta svg {
+    flex-shrink: 0;
+  }
+  .services-purpose {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    order: 1;
+    margin: 18px 6% 28px;
+    padding-left: 16px;
+    padding-right: 0;
+    border-left: 1px solid #9B6038;
+    border-right: none;
+    font-size: 10.5px;
+    line-height: 1.7;
+    letter-spacing: .18em;
+  }
+  .services-visual {
+    position: relative;
+    inset: auto;
+    order: 2;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    height: 280px;
+    min-height: 280px;
+    overflow: hidden;
+    clip-path: none;
+    transform: none;
+  }
+  .services-visual .services-photo--sails {
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 52%;
+    clip-path: none;
+  }
+  .services-visual .services-photo--pavilion {
+    left: 50%;
+    top: 0;
+    width: 50%;
+    height: 52%;
+    clip-path: none;
+  }
+  .services-visual .services-photo--warehouse {
+    left: 0;
+    top: 52%;
+    width: 34%;
+    height: 48%;
+    clip-path: none;
+  }
+  .services-visual .services-photo--boardroom {
+    left: 34%;
+    top: 52%;
+    width: 36%;
+    height: 48%;
+    clip-path: none;
+  }
+  .services-visual .services-photo--canopies {
+    left: 70%;
+    top: 52%;
+    width: 30%;
+    height: 48%;
+    clip-path: none;
+  }
+  .services-visual .services-photo--pergola {
+    display: none;
+  }
+  .services-dividers {
+    display: none;
+  }
+  .services-photo img {
+    transform: none;
+    object-fit: cover;
+  }
+  .services-drafting {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -159,22 +287,173 @@
   }
 }
 
+/* Mobile: max-width 767px RTL */
 @media (max-width: 767px) {
-  [dir="rtl"] .services-editorial {
-    margin: 0 !important;
-    padding: 140px 7% 34px !important;
+  .services-hero {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
   }
+
+  [dir="rtl"] .services-editorial {
+    order: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 85px 6% 28px !important;
+    text-align: right;
+    box-sizing: border-box;
+  }
+
+  [dir="rtl"] .services-eyebrow {
+    font-size: 10px !important;
+    letter-spacing: normal !important;
+    margin-bottom: 16px;
+    white-space: normal;
+    text-align: right;
+  }
+
+  [dir="rtl"] .services-heading {
+    font-size: clamp(38px, 10.5vw, 62px) !important;
+    line-height: 1.15 !important;
+    letter-spacing: normal !important;
+    text-align: right;
+    margin: 0;
+  }
+
+  [dir="rtl"] .services-heading > span {
+    display: block;
+    white-space: normal;
+  }
+
+  [dir="rtl"] .services-heading > span + span {
+    margin-top: 4px;
+    color: #9B6038;
+  }
+
+  [dir="rtl"] .services-rule {
+    margin: 20px 0 18px 0 !important;
+    width: 44px;
+    height: 3px;
+  }
+
+  [dir="rtl"] .services-description {
+    font-size: 14px;
+    line-height: 1.75;
+    max-width: 100% !important;
+    letter-spacing: normal;
+    text-align: right;
+    margin: 0 0 24px;
+  }
+
+  [dir="rtl"] .services-cta {
+    min-height: 48px;
+    margin-top: 0;
+    padding: 14px 22px;
+    font-size: 11.5px;
+    letter-spacing: normal;
+    width: 100%;
+    max-width: 280px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  [dir="rtl"] .services-cta svg {
+    transform: scaleX(-1);
+    flex-shrink: 0;
+  }
+
+  [dir="rtl"] .services-cta:hover svg {
+    transform: scaleX(-1) translateX(-4px);
+  }
+
   [dir="rtl"] .services-purpose {
-    margin: 0 7% 30px !important;
+    position: relative;
     left: auto !important;
     right: auto !important;
+    bottom: auto !important;
+    order: 1;
+    margin: 18px 6% 28px !important;
+    padding: 0 16px 0 0 !important;
+    border-left: none !important;
+    border-right: 1px solid #9B6038 !important;
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: normal !important;
+    text-align: right;
   }
+
   [dir="rtl"] .services-visual {
+    position: relative;
+    inset: auto;
+    order: 2;
+    width: 100%;
     margin-left: 0 !important;
-    margin-right: -35% !important;
+    margin-right: 0 !important;
+    height: 280px;
+    min-height: 280px;
+    overflow: hidden;
+    clip-path: none !important;
     transform: none !important;
   }
+
+  [dir="rtl"] .services-visual .services-photo--sails {
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 52%;
+    clip-path: none;
+  }
+
+  [dir="rtl"] .services-visual .services-photo--pavilion {
+    left: 50%;
+    top: 0;
+    width: 50%;
+    height: 52%;
+    clip-path: none;
+  }
+
+  [dir="rtl"] .services-visual .services-photo--warehouse {
+    left: 0;
+    top: 52%;
+    width: 34%;
+    height: 48%;
+    clip-path: none;
+  }
+
+  [dir="rtl"] .services-visual .services-photo--boardroom {
+    left: 34%;
+    top: 52%;
+    width: 36%;
+    height: 48%;
+    clip-path: none;
+  }
+
+  [dir="rtl"] .services-visual .services-photo--canopies {
+    left: 70%;
+    top: 52%;
+    width: 30%;
+    height: 48%;
+    clip-path: none;
+  }
+
+  [dir="rtl"] .services-visual .services-photo--pergola {
+    display: none;
+  }
+
+  [dir="rtl"] .services-dividers {
+    display: none;
+  }
+
   [dir="rtl"] .services-photo img {
     transform: none !important;
+    object-fit: cover !important;
+  }
+
+  [dir="rtl"] .services-drafting {
+    display: none;
   }
 }
